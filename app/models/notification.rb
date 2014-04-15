@@ -21,4 +21,7 @@ class Notification < ActiveRecord::Base
   serialize :data, JSON
   validates :notification_type, presence: true
 
+  scope :actionable, -> { where(action: true) }
+  scope :informational, -> { where(action: false) }
+
 end

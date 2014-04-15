@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root 'user_shifts#index'
+  root 'dashboard#index'
 
+  get 'dashboard', to: 'dashboard#index'
   get 'user_shifts', to: 'user_shifts#index'
   post 'user_shifts/update_selections', to: 'user_shifts#update_selections'
   get 'admin/shifts', to: 'admin/shifts#index'

@@ -27,7 +27,7 @@ class UserShift < ActiveRecord::Base
 
 
   def self.generate_schedule
-    UserShift.where(scheduled: true).each(&:unschedule!)
+    UserShift.scheduled.each(&:unschedule!)
     scheduler = Scheduler.new(UserShift.all, Shift.all)
     scheduled_user_shifts = scheduler.generate_schedule
     scheduled_user_shifts.each(&:schedule!)

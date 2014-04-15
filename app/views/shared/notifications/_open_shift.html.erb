@@ -1,0 +1,6 @@
+<p>
+  <% shift = Shift.find(notification.data['shift_id']) %>
+  No one is available for this shift: <%= display_shift_time(shift.start_at, shift.end_at) %>. Take this shift for a badge?
+  <%= button_to 'Yes', user_shifts_update_selections_path, method: :put, params: { 'shift_ids[]' => [shift.id] } %>
+  <%= button_to 'No', user_shifts_update_selections_path, method: :put, params: { 'shift_ids[]' => [shift.id] } %>
+</p>
