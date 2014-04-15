@@ -4,6 +4,7 @@ square_shift
 <p>cd square_shift</p>
 <p>bundle</p>
 <p>rake db:create</p>
+<p>rake db:seed</p>
 <p>rails s</p>
 </br>
 <p>(I haven't tried out the above steps yet, so please update if needed!)</p>
