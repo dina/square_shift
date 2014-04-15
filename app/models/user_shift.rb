@@ -8,9 +8,7 @@ class UserShift < ActiveRecord::Base
   validates :user, presence: true
   validates :shift, presence: true
 
-  def self.scheduled
-    where(scheduled: true)
-  end
+  scope :scheduled, -> {where(scheduled: true)}
 
   # saves the new assignments
   def self.update_assignments(new_assignments)
