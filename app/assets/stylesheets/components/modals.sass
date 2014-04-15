@@ -1,9 +1,23 @@
-.modal
+.modal-container
   position: fixed
+  top: 0px
+  right: 0px
+  bottom: 0px
+  left: 0px
+  z-index: $modal-container-z-index
+  cursor: pointer
+
+.modal
+  position: absolute
 
 .settings-dropdown-modal
-  top: 10px
+  top: 60px
   right: 10px
-  background-color: white
   height: 100px
-  width: 100px
+  width: 300px
+  border: 1px solid rgba(115, 119, 122, 0.2)
+  border-radius: 3px
+  background-color: white
+
+.modal-container, .modal
+  display: none

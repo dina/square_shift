@@ -7,6 +7,7 @@
       li.menu-list-item Orders
       li.menu-list-item.active Employees
       li.menu-list-item Business
-    .header-username =current_user.email
+    - if current_user
+      .header-username =current_user.email
 
 / <%= link_to 'sign out', destroy_user_session_path, method: :delete %>
