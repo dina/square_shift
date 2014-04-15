@@ -16,3 +16,5 @@ group :assets do
   gem 'sass-rails'
   gem 'uglifier'
 end
+
+gem 'slim'
