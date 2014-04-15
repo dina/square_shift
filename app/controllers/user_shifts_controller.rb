@@ -3,21 +3,17 @@ class UserShiftsController < ApplicationController
 
   def index
     @all_shifts = Shift.all
-    @current_user_shifts = current_user.user_shifts
-    @current_user_shift_ids = @current_user_shifts.map &:id
+    @current_shift_ids = current_user.shifts.map &:id
   end
 
   # expected params: array of shift ids that the user has selected
   # saves the new availability for the employee
   def update_selections
+    current_user.update_shift_selections(params[:shift_ids])
 
-    new_shift_ids = params[:shift_ids]
-    current_user.update_shift_selections(new_shift_ids)
-
-    render status: 200
-
-    # redirect_to user_shifts_path
-
+    respond_to do |format|
+      format.json { render json: :none }
+    end
   end
 
 end

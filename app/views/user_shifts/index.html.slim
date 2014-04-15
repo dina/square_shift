@@ -3,7 +3,7 @@
     =@current_user_shift_ids
   .calendar
     - for shift in @all_shifts
-      .calendar-shift data-id="#{shift.id}" class=(@current_user_shift_ids.include?(shift.id) ? 'active' : 'inactive') class="calendar-shift-#{shift.id}"
+      .calendar-shift data-id="#{shift.id}" class=(@current_shift_ids.include?(shift.id) ? 'active' : 'inactive') class="calendar-shift-#{shift.id}"
         = shift.start_at
         br
         = shift.id
@@ -11,8 +11,8 @@
 
 javascript:
   $(document).ready(function(){
-    // bootstrap in @current_user_shift_ids
-    var activeShiftsArray = #{@current_user_shift_ids};
+    // bootstrap in @current_shift_ids
+    var activeShiftsArray = #{@current_shift_ids};
 
     $('.calendar-shift').click(function(){
       var shiftId = parseInt($(this).attr('data-id'));
@@ -30,16 +30,15 @@ javascript:
     });
 
     $('.update-shifts-btn').click(function(){
-      alert(activeShiftsArray);
       $.ajax({
         url: "/user_shifts/update_selections",
         type: "POST",
         data: {
-          shift_ids: JSON.stringify(activeShiftsArray)
+          shift_ids: activeShiftsArray
         }
       }).done(function() {
-        alert('success');
-        alert(activeShiftsArray);
+        // alert('success');
+        // alert(activeShiftsArray);
       });
 
     });
