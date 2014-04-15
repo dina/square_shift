@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140415002030) do
+ActiveRecord::Schema.define(version: 20140415202453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "notifications", force: true do |t|
+    t.boolean  "action",            default: false
+    t.string   "notification_type",                 null: false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "shifts", force: true do |t|
     t.datetime "start_at", null: false
