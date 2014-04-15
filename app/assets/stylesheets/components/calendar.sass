@@ -1,0 +1,80 @@
+$calendar-shift-height: 125px
+$calendar-shift-width: 125px
+
+.calendar
+  position: relative
+  height: 650px
+  width: 940px
+  border: 1px solid pink
+
+.calendar-shift
+  position: absolute
+  height: $calendar-shift-height
+  width: $calendar-shift-width
+  border: 1px dotted black
+  cursor: pointer
+.calendar-shift.active
+  background-color: rgb(129, 229, 189)
+
+
+.calendar-shift-1,
+.calendar-shift-2,
+.calendar-shift-3
+  left: 0px
+
+.calendar-shift-4,
+.calendar-shift-5,
+.calendar-shift-6
+  left: $calendar-shift-width
+
+.calendar-shift-7,
+.calendar-shift-8,
+.calendar-shift-9
+  left: $calendar-shift-width*2
+
+.calendar-shift-10,
+.calendar-shift-11,
+.calendar-shift-12
+  left: $calendar-shift-width*3
+
+.calendar-shift-13,
+.calendar-shift-14,
+.calendar-shift-15
+  left: $calendar-shift-width*4
+
+.calendar-shift-16,
+.calendar-shift-17,
+.calendar-shift-18
+  left: $calendar-shift-width*5
+
+.calendar-shift-19,
+.calendar-shift-20,
+.calendar-shift-21
+  left: $calendar-shift-width*6
+
+.calendar-shift-1,
+.calendar-shift-4,
+.calendar-shift-7,
+.calendar-shift-10,
+.calendar-shift-13,
+.calendar-shift-16,
+.calendar-shift-19
+  top: 0px
+
+.calendar-shift-2,
+.calendar-shift-5,
+.calendar-shift-8,
+.calendar-shift-11,
+.calendar-shift-14,
+.calendar-shift-17,
+.calendar-shift-20
+  top: $calendar-shift-height
+
+.calendar-shift-3,
+.calendar-shift-6,
+.calendar-shift-9,
+.calendar-shift-12,
+.calendar-shift-15,
+.calendar-shift-18,
+.calendar-shift-21
+  top: $calendar-shift-height*2

@@ -1,0 +1,44 @@
+.l-content
+  .current-user-shifts
+    =@current_user_shift_ids
+  .calendar
+    - for shift in @all_shifts
+      .calendar-shift data-id="#{shift.id}" class=(@current_user_shift_ids.include?(shift.id) ? 'active' : 'inactive') class="calendar-shift-#{shift.id}"
+        = shift.start_at
+        br
+        = shift.id
+  .btn.btn-blue.update-shifts-btn Update
+
+javascript:
+  $(document).ready(function(){
+    // bootstrap in @current_user_shift_ids
+    var activeShiftsArray = #{@current_user_shift_ids};
+
+    $('.calendar-shift').click(function(){
+      var shiftId = parseInt($(this).attr('data-id'));
+
+      if (activeShiftsArray.indexOf(shiftId) > -1) {
+        itemIndex = activeShiftsArray.indexOf(shiftId);
+        activeShiftsArray.splice(itemIndex, 1);
+      } else {
+        activeShiftsArray.push(shiftId);
+      };
+
+      $('.current-user-shifts').html(activeShiftsArray.toString());
+
+      $(this).toggleClass('active');
+    });
+
+    $('.update-shifts-btn').click(function(){
+      // alert(activeShiftsArray);
+      $.ajax({
+        url: "/user_shifts/update_selections",
+        type: "PUT",
+        data: activeShiftsArray
+      }).done(function() {
+        alert('success');
+        alert(activeShiftsArray);
+      });
+
+    });
+  });
