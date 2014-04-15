@@ -16,6 +16,17 @@ ActiveRecord::Schema.define(version: 20140415002030) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "shifts", force: true do |t|
+    t.datetime "start_at", null: false
+    t.datetime "end_at"
+  end
+
+  create_table "user_shifts", force: true do |t|
+    t.integer "users_id",  null: false
+    t.integer "shifts_id", null: false
+    t.boolean "scheduled"
+  end
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
