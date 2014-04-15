@@ -1,13 +1,16 @@
 .l-content
-  .current-user-shifts
-    =@current_user_shift_ids
+
   .calendar
     - for shift in @all_shifts
       .calendar-shift data-id="#{shift.id}" class=(@current_shift_ids.include?(shift.id) ? 'active' : 'inactive') class="calendar-shift-#{shift.id}"
         = shift.start_at
         br
         = shift.id
+
+  .current-user-shifts
+    =@current_user_shift_ids
   .btn.btn-blue.update-shifts-btn Update
+
 
 javascript:
   $(document).ready(function(){
