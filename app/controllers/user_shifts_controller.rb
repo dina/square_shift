@@ -2,9 +2,9 @@ class UserShiftsController < ApplicationController
   before_action :authenticate_user!
 
   # expected params: array of shift ids that the user has selected
-  def save_user_shifts
-    # params[:shift_ids]
-    new_shift_ids = [1,2,5] # TODO: parse this info from the params
+  # saves the new availability for the employee
+  def update_selections
+    new_shift_ids = [1,2,5] # TODO: parse this info from the params (possibly from params[:shift_ids])
     old_shift_ids = current_user.shifts.map(&:id)
 
     (new_shift_ids - old_shift_ids).each do |shift_id|

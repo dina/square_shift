@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   root 'shifts#index'
 
   get 'shifts', to: 'shifts#index'
-  put 'user_shifts/save_user_shifts', as: :save_user_shifts
+  put 'user_shifts/update_selections'
   get 'admin/shifts', to: 'admin/shifts#index'
+  get 'admin/shifts/update_assignments'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
