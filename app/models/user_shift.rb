@@ -8,8 +8,28 @@ class UserShift < ActiveRecord::Base
   validates :user, presence: true
   validates :shift, presence: true
 
-  def self.find_schedule
-    UserShift.all.each(&:unschedule!)
+  def self.scheduled
+    where(scheduled: true)
+  end
+
+  # saves the new assignments
+  def self.update_assignments(new_assignments)
+    # clear the initial 'scheduled' flags
+    UserShift.scheduled.each(&:unschedule!)
+
+    # TODO: Validations.
+    # Details: we are skipping a bunch of validations here.
+    # For instance, this code can be fooled into setting the 'scheduled' flags for two user_shifts that correspond to the same shift.
+
+    # set the 'scheduled' flags of new assignments
+    UserShift.find(new_assignments).each(&:schedule!)
+
+    redirect_to :index
+  end
+
+
+  def self.generate_schedule
+    UserShift.where(scheduled: true).each(&:unschedule!)
     scheduler = Scheduler.new(UserShift.all, Shift.all)
     scheduled_user_shifts = scheduler.generate_schedule
     scheduled_user_shifts.each(&:schedule!)

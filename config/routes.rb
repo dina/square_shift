@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'user_shifts', to: 'user_shifts#index'
   put 'user_shifts/update_selections'
   get 'admin/shifts', to: 'admin/shifts#index'
+  get 'admin/shifts/generate_schedule'
+  get 'admin/shifts/publish_schedule'
   get 'admin/shifts/update_assignments'
 
   # The priority is based upon order of creation: first created -> highest priority.
