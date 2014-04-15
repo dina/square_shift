@@ -42,7 +42,7 @@ end
 
 users = User.all
 shifts = Shift.all
-1.upto(30) do |i|
+1.upto(50) do |i|
   user_offset = Random.new.rand(users.count)
   shift_offset = Random.new.rand(shifts.count)
   UserShift.where(user: users[user_offset], shift: shifts[shift_offset]).first_or_create
