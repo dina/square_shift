@@ -10,10 +10,14 @@ class UserShiftsController < ApplicationController
   # expected params: array of shift ids that the user has selected
   # saves the new availability for the employee
   def update_selections
-    new_shift_ids = [1,2,5] # TODO: parse this info from the params (possibly from params[:shift_ids])
+
+    new_shift_ids = params[:shift_ids]
     current_user.update_shift_selections(new_shift_ids)
 
-    redirect_to user_shifts_path
+    render status: 200
+
+    # redirect_to user_shifts_path
+
   end
 
 end

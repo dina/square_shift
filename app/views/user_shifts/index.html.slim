@@ -30,11 +30,13 @@ javascript:
     });
 
     $('.update-shifts-btn').click(function(){
-      // alert(activeShiftsArray);
+      alert(activeShiftsArray);
       $.ajax({
         url: "/user_shifts/update_selections",
-        type: "PUT",
-        data: activeShiftsArray
+        type: "POST",
+        data: {
+          shift_ids: JSON.stringify(activeShiftsArray)
+        }
       }).done(function() {
         alert('success');
         alert(activeShiftsArray);
