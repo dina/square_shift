@@ -1,6 +1,5 @@
 class Admin::ShiftsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :authenticate_admin!
+  before_action :authenticate_user!, :authenticate_admin!
 
   def index
   end
@@ -19,6 +18,8 @@ class Admin::ShiftsController < ApplicationController
 
     # set the 'scheduled' flags of new assignments
     UserShift.find(new_assignments).update_all(scheduled: true)
+
+    redirect_to :index
   end
 
   private
