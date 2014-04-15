@@ -4,6 +4,7 @@ gem 'rails', '4.1.0'
 gem 'jquery-rails'
 gem 'pg'
 gem 'devise'
+gem 'turbolinks'
 
 group :test, :development do
   gem 'pry-nav'
