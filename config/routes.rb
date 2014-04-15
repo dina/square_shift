@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root 'shifts#index'
+  root 'user_shifts#index'
 
-  get 'shifts', to: 'shifts#index'
+  get 'user_shifts', to: 'user_shifts#index'
   put 'user_shifts/update_selections'
   get 'admin/shifts', to: 'admin/shifts#index'
   get 'admin/shifts/update_assignments'
