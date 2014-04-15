@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(version: 20140415002030) do
   end
 
   create_table "user_shifts", force: true do |t|
-    t.integer "users_id",  null: false
-    t.integer "shifts_id", null: false
+    t.integer "user_id",   null: false
+    t.integer "shift_id",  null: false
     t.boolean "scheduled"
   end
 

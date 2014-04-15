@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  get 'shifts/index', as: :shifts
+  root 'shifts#index'
+
+  get 'shifts', to: 'shifts#index'
   put 'user_shifts/save_user_shifts', as: :save_user_shifts
+  get 'admin/shifts', to: 'admin/shifts#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
