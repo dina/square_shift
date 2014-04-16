@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140415235845) do
+ActiveRecord::Schema.define(version: 20140416192051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,17 @@ ActiveRecord::Schema.define(version: 20140415235845) do
     t.datetime "updated_at"
   end
 
+  create_table "shift_change_requests", force: true do |t|
+    t.integer  "initiator_id"
+    t.integer  "original_user_shift_id"
+    t.integer  "target_user_id"
+    t.integer  "target_user_shift_id"
+    t.integer  "status"
+    t.text     "reason"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "shifts", force: true do |t|
     t.datetime "start_at", null: false
     t.datetime "end_at"
@@ -43,6 +54,7 @@ ActiveRecord::Schema.define(version: 20140415235845) do
   end
 
   create_table "users", force: true do |t|
+    t.string   "name"
     t.string   "phone_number",           default: ""
     t.boolean  "admin",                  default: false
     t.string   "email",                  default: "",    null: false

@@ -14,7 +14,7 @@
   .l-content
     ul.menu-list
       li =link_to_unless_current "Dashboard", notifications_path, class: "menu-list-item"
-      li =link_to_unless_current "Schedule", admin_shifts_path, class: "menu-list-item"
       li =link_to_unless_current "Availability", user_shifts_path, class: "menu-list-item"
+      li =link_to_unless_current "Schedule", admin_shifts_path, class: "menu-list-item"
 
 / <%= link_to 'sign out', destroy_user_session_path, method: :delete %>

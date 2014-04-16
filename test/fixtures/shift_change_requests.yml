@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  from_user_shift_id: 1
+  to_user_id: 1
+  reason: MyText
+
+two:
+  from_user_shift_id: 1
+  to_user_id: 1
+  reason: MyText
