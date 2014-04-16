@@ -1,1 +1,13 @@
-.header Header
+.header
+  .l-content
+    .logo
+    ul.menu-list
+      li.menu-list-item Sales
+      li.menu-list-item Items
+      li.menu-list-item Orders
+      li.menu-list-item.active Employees
+      li.menu-list-item Business
+    - if current_user
+      .header-username =current_user.email
+
+/ <%= link_to 'sign out', destroy_user_session_path, method: :delete %>
