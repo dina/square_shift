@@ -18,5 +18,4 @@ class UserShiftsController < ApplicationController
     end
 
   end
-
 end

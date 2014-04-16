@@ -1,1 +1,3 @@
-Please update your availability <%= link_to('here', user_shifts_path) %>.
+<% unless current_user.provided_availability? %>
+  Please update your availability <%= link_to('here', user_shifts_path) %>.
+<% end %>

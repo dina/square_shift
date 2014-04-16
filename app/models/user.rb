@@ -15,4 +15,8 @@ class User < ActiveRecord::Base
     user_shifts.where(shift_id: (old_shift_ids - new_shift_ids)).destroy_all
     (new_shift_ids - old_shift_ids).each { |shift_id| user_shifts.create(shift_id: shift_id)}
   end
+
+  def provided_availability?
+    UserShift.where(user: self).any?
+  end
 end
