@@ -1,5 +1,5 @@
-$(document).ready(function(){
-  $('.calendar-shift').click(function(){
+var ready = function() {
+  $('.availability-calendar').children('.calendar-shift').click(function(){
     var shiftId = parseInt($(this).attr('data-id'));
     if (activeShiftsArray.indexOf(shiftId) > -1) {
       itemIndex = activeShiftsArray.indexOf(shiftId);
@@ -20,4 +20,7 @@ $(document).ready(function(){
       }
     }).done(function() {});
   });
-});
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
