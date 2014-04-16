@@ -48,7 +48,7 @@ shifts = Shift.all
   UserShift.where(user: users[user_offset], shift: shifts[shift_offset]).first_or_create
 end
 
-UserShift.generate_schedule
+UserShift.generate_schedule!
 
 Notification.create(user: users[1], action: true, notification_type: 'update_availability', data: { user_id: users[2].id })
 Notification.create(user: users[1], action: true, notification_type: 'open_shift', data: { shift_id: Shift.first.id })
