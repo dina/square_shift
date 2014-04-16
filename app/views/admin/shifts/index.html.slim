@@ -38,9 +38,10 @@
           | Sun
         -(1..21).each do |n|
           .calendar-shift class="calendar-shift-#{n}" class=('is-scheduled' if !@shifts_data[n][:scheduled].nil?)
-            select
-              -@shifts_data[n][:all].each do |user_shift|
-                option value="#{user_shift.id}" = user_shift.user.name
+            .styled-select
+              select
+                -@shifts_data[n][:all].each do |user_shift|
+                  option value="#{user_shift.id}" = user_shift.user.name
       .calendar-buttons
         = button_to 'Generate Schedule', admin_shifts_generate_schedule_path, method: :post, class: "btn btn-white"
         = button_to 'Publish Schedule', admin_shifts_publish_schedule_path, method: :post, class: "btn btn-blue"

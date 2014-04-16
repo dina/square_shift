@@ -1,0 +1,23 @@
+.styled-select select
+  background: transparent
+  width: $calendar-shift-width + 20
+  padding: 5px
+  font-size: 16px
+  line-height: 1
+  border: 0
+  border-radius: 0
+  height: 34px
+  -webkit-appearance: none
+
+.styled-select
+  width: $calendar-shift-width
+  height: 34px
+  overflow: hidden
+  &:hover
+    background: image-url('chevron.png') no-repeat #ddd
+    background-size: 15%
+    background-repeat: no-repeat
+    background-position: 72px 14px
+
+.styled-select select:focus
+  outline-width: 0
