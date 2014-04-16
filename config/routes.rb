@@ -2,8 +2,13 @@ Rails.application.routes.draw do
   devise_for :users
 
   root 'notifications#index'
+  resources :notifications, only: [ :index, :destroy ] do
+    member do
+      post :add_shift
+    end
+  end
 
-  get 'notifications', to: 'notifications#index'
+
   get 'user_shifts', to: 'user_shifts#index'
   post 'user_shifts/update_selections'
   get 'admin/shifts', to: 'admin/shifts#index'
@@ -11,9 +16,6 @@ Rails.application.routes.draw do
   post 'admin/shifts/publish_schedule'
   post 'admin/shifts/unpublish_schedule'
   post 'admin/shifts/update_assignments'
-
-  post 'notifications/:id/add_shift', to: 'notifications#add_shift', as: 'notifications_add_shift'
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

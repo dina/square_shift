@@ -1,8 +1,9 @@
 class NotificationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :load_notifications
+  before_action :load_notifications, except: [:index]
 
   def index
+    @notifications = Notification.all
   end
 
   def add_shift
@@ -21,11 +22,12 @@ class NotificationsController < ApplicationController
     redirect_to :root
   end
 
-  private
-  def load_notifications
-    @notifications = Notification.all
-    @notification = Notification.find(params[:id]) if params[:id]
+  def destroy
+    @notification.destroy
   end
 
-
+  private
+  def load_notifications
+    @notification = Notification.find(params[:id])
+  end
 end

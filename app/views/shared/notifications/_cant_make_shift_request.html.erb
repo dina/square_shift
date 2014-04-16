@@ -3,10 +3,10 @@
   <% shift_time = display_shift_time(user_shift.shift.start_at, user_shift.shift.end_at) %>
 
   <%= user_shift.user.email %> can't make their shift at <%= shift_time %>. Take this shift for a badge?
-  <%= button_to 'Yes', notifications_add_shift_path(notification),
+  <%= button_to 'Yes', add_shift_notification_path(notification),
     method: :post,
     params: { shift_id: user_shift.shift.id },
     data: { confirm: "Are you sure you want to take this shift?" }
   %>
-  <%= button_to 'No', user_shifts_update_selections_path, method: :put, params: { 'shift_ids[]' => [user_shift.shift.id] } %>
+  <%= button_to 'No', notification_path(notification), method: :delete %>
 </p>
