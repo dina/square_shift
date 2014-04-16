@@ -36,7 +36,7 @@ class UserShift < ActiveRecord::Base
   end
 
   def scheduled?
-
+    self.scheduled
   end
 
   def schedule!
