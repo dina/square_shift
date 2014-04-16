@@ -1,0 +1,4 @@
+<% from_user_shift = UserShift.find(notification.data['from_user_shift_id']) %>
+<% to_user_shift = UserShift.find(notification.data['to_user_shift_id']) %>
+
+<%= from_user_shift.user.email %> traded shifts with other <%= to_user_shift.user.email %>. See the latest <%= link_to('schedule', user_shifts_path) %>

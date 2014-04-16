@@ -1,0 +1,21 @@
+<p>Actionable</p>
+
+<ul>
+  <% notifications.actionable.each do |notification| %>
+    <li>
+      <%= render partial: "shared/notifications/#{notification.notification_type}", locals: { notification: notification } %>
+    </li>
+  <% end %>
+</ul>
+
+</br>
+
+<p>Informational</p>
+
+<ul>
+  <% notifications.informational.each do |notification| %>
+    <li>
+      <%= render partial: "shared/notifications/#{notification.notification_type}", locals: { notification: notification } %>
+    </li>
+  <% end %>
+</ul>
