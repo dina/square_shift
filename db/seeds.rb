@@ -1,5 +1,6 @@
 # rake db:seed
 User.create(
+  name: "John",
   phone_number: "5555555555",
   admin: true,
   email: "admin@adminsquare.com",
@@ -7,6 +8,7 @@ User.create(
 )
 
 User.create(
+  name: "Jane",
   phone_number: "5555555555",
   admin: false,
   email: "hello@adminsquare.com",
@@ -14,6 +16,7 @@ User.create(
 )
 
 User.create(
+  name: "Adam",
   phone_number: "5555555555",
   admin: false,
   email: "world@adminsquare.com",
@@ -21,6 +24,7 @@ User.create(
 )
 
 User.create(
+  name: "Sally",
   phone_number: "5555555555",
   admin: true,
   email: "yeah@adminsquare.com",
