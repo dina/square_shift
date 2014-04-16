@@ -2,6 +2,7 @@ class Admin::ShiftsController < ApplicationController
   before_action :authenticate_user!, :authenticate_admin!
 
   def index
+    @users = User.all
     @shifts_data = {}
     Shift.includes(:user_shifts=>:user).all.each do |shift|
       @shifts_data[shift.id] = {
