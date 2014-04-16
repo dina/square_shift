@@ -9,11 +9,13 @@ class UserShiftsController < ApplicationController
   # expected params: array of shift ids that the user has selected
   # saves the new availability for the employee
   def update_selections
-    current_user.update_shift_selections(params[:shift_ids])
-
-    respond_to do |format|
-      format.json { render json: :none }
+    if Schedule.published?
+      respond_to { |format| format.json { render json: {error: "You cannot make changes to a published schedule!"}, status: 403 }}
+    else
+      current_user.update_shift_selections(params[:shift_ids])
+      respond_to { |format| format.json { render json: :none }}
     end
+
   end
 
 end

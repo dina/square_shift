@@ -3,7 +3,7 @@ class Admin::ShiftsController < ApplicationController
 
   def index
     @shifts_data = {}
-    Shift.includes(:user_shifts).all.each do |shift|
+    Shift.includes(:user_shifts=>:user).all.each do |shift|
       @shifts_data[shift.id] = {
           scheduled: shift.user_shifts.detect{|us| us.scheduled?},
           all: shift.user_shifts
@@ -14,12 +14,11 @@ class Admin::ShiftsController < ApplicationController
 
   def generate_schedule
     UserShift.generate_schedule
-
     redirect_to :index
   end
 
   def publish_schedule
-    raise "NOT IMPLEMENTED YET!"
+    Schedule.publish!
     redirect_to :index
   end
 

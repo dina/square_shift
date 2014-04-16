@@ -5,11 +5,11 @@ Rails.application.routes.draw do
 
   get 'dashboard', to: 'dashboard#index'
   get 'user_shifts', to: 'user_shifts#index'
-  post 'user_shifts/update_selections', to: 'user_shifts#update_selections'
+  post 'user_shifts/update_selections'
   get 'admin/shifts', to: 'admin/shifts#index'
-  get 'admin/shifts/generate_schedule'
-  get 'admin/shifts/publish_schedule'
-  get 'admin/shifts/update_assignments'
+  post 'admin/shifts/generate_schedule'
+  post 'admin/shifts/publish_schedule'
+  post 'admin/shifts/update_assignments'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

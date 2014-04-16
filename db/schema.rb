@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20140415215756) do
   end
 
   create_table "schedules", force: true do |t|
-    t.boolean  "scheduled"
+    t.boolean  "published"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
