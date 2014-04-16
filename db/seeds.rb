@@ -50,13 +50,13 @@ end
 
 UserShift.generate_schedule
 
-Notification.create(action: true, notification_type: 'update_availability', data: { user_id: User.first.id })
-Notification.create(action: true, notification_type: 'open_shift', data: { shift_id: Shift.first.id })
-Notification.create(action: true, notification_type: 'trade_shift_request', data: {
+Notification.create(user: users[1], action: true, notification_type: 'update_availability', data: { user_id: users[2].id })
+Notification.create(user: users[1], action: true, notification_type: 'open_shift', data: { shift_id: Shift.first.id })
+Notification.create(user: users[1], action: true, notification_type: 'trade_shift_request', data: {
   from_user_shift_id: UserShift.scheduled.first.id, to_user_shift_id: UserShift.scheduled.last.id })
-Notification.create(action: true, notification_type: 'cant_make_shift_request', data: { user_shift_id: UserShift.scheduled.last })
-Notification.create(action: false, notification_type: 'new_schedule')
-Notification.create(action: false, notification_type: 'updated_schedule')
-Notification.create(action: false, notification_type: 'shift_trade', data: {
+Notification.create(user: users[1], action: true, notification_type: 'cant_make_shift_request', data: { user_shift_id: UserShift.scheduled.last.id })
+Notification.create(user: users[1], action: false, notification_type: 'new_schedule')
+Notification.create(user: users[1], action: false, notification_type: 'updated_schedule')
+Notification.create(user: users[1], action: false, notification_type: 'shift_trade', data: {
   from_user_shift_id: UserShift.scheduled.first.id, to_user_shift_id: UserShift.scheduled.last.id })
 
