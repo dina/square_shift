@@ -34,6 +34,10 @@ class UserShift < ActiveRecord::Base
     scheduled_user_shifts
   end
 
+  def scheduled?
+
+  end
+
   def schedule!
     self.scheduled = true
     self.save!

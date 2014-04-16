@@ -2,6 +2,14 @@ class Admin::ShiftsController < ApplicationController
   before_action :authenticate_user!, :authenticate_admin!
 
   def index
+    @shifts_data = {}
+    Shift.includes(:user_shifts).all.each do |shift|
+      @shifts_data[shift.id] = {
+          scheduled: shift.user_shifts.detect{|us| us.scheduled?},
+          all: shift.user_shifts
+      }
+      puts @shifts_data
+    end
   end
 
   def generate_schedule
