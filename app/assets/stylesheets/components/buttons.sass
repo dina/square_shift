@@ -1,8 +1,11 @@
+.button_to
+  display: inline-block
+
 .btn
   height: 32px
   padding: 0 14px 0
-  border: 1px solid #e0e2e3
-  border-radius: 3px  
+  border: 1px solid
+  border-radius: 3px
   -webkit-border-radius: 3px
   -moz-border-radius: 3px
   -ms-border-radius: 3px
@@ -14,13 +17,28 @@
   line-height: 30px
   font-weight: 500
   text-align: center
-  background-color: #2996cc
-  color: white
   cursor: pointer
-  &:hover
-    background-color: #3ba8de
-
-.btn-blue
   -webkit-box-shadow: rgba(0, 0, 0, 0.08) 0 1px 0
   -moz-box-shadow: rgba(0, 0, 0, 0.08) 0 1px 0
   box-shadow: rgba(0, 0, 0, 0.08) 0 1px 0
+
+.btn-blue
+  background-color: #2996cc
+  color: white
+  border-color: #e0e2e3
+  &:hover
+    background-color: #3ba8de
+
+.btn-white
+  color: #2996cc
+  border-color: #2996cc
+  background-color: white
+  &:hover
+    background-color: rgb(236, 236, 236)
+
+.btn-is-inactive
+  background-color: #D9DBDC
+  cursor: default
+  &:hover
+    background-color: #D9DBDC
+
