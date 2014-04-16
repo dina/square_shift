@@ -18,6 +18,8 @@ class Notification < ActiveRecord::Base
     SHIFT_TRADE
   ].freeze
 
+  belongs_to :user
+
   serialize :data, JSON
   validates :notification_type, presence: true
 
