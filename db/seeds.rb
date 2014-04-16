@@ -22,7 +22,7 @@ User.create(
 
 User.create(
   phone_number: "5555555555",
-  admin: false,
+  admin: true,
   email: "yeah@adminsquare.com",
   password: "yeahyeah"
 )

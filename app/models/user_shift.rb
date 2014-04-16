@@ -25,8 +25,9 @@ class UserShift < ActiveRecord::Base
     redirect_to :index
   end
 
+  def self.generate_schedule!
+    return if Schedule.published?
 
-  def self.generate_schedule
     UserShift.scheduled.each(&:unschedule!)
     scheduler = Scheduler.new(UserShift.all, Shift.all)
     scheduled_user_shifts = scheduler.generate_schedule

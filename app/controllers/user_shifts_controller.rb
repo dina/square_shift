@@ -4,6 +4,7 @@ class UserShiftsController < ApplicationController
   def index
     @all_shifts = Shift.all
     @current_shift_ids = current_user.shifts.map &:id
+    @published = Schedule.published?
   end
 
   # expected params: array of shift ids that the user has selected

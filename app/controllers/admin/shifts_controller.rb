@@ -8,18 +8,22 @@ class Admin::ShiftsController < ApplicationController
           scheduled: shift.user_shifts.detect{|us| us.scheduled?},
           all: shift.user_shifts
       }
-      puts @shifts_data
     end
   end
 
   def generate_schedule
-    UserShift.generate_schedule
-    redirect_to :index
+    UserShift.generate_schedule!
+    redirect_to admin_shifts_path
   end
 
   def publish_schedule
     Schedule.publish!
-    redirect_to :index
+    redirect_to admin_shifts_path
+  end
+
+  def unpublish_schedule
+    Schedule.unpublish!
+    redirect_to admin_shifts_path
   end
 
   # expected params: array of assigned user_shift_ids
