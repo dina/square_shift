@@ -19,4 +19,18 @@ class User < ActiveRecord::Base
   def provided_availability?
     UserShift.where(user: self).any?
   end
+
+  # SWAP REQUESTS
+  def create_swap_request(original_user_shift, target_user_shift)
+    ShiftChangeRequest.create_swap_request(self, original_user_shift, target_user_shift)
+  end
+
+  def accept_swap_request(request)
+    request.accept_swap_request(self)
+  end
+
+  def decline_swap_request(request)
+    request.accept_swap_request(self)
+  end
+
 end
