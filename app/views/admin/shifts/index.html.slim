@@ -1,4 +1,49 @@
-.l-content
+.l-content.margin-top-medium
+  .l-row
+    .l-grid-1-2
+      .admin-container
+        h3 Managers
+        ul
+          - for user in @users
+            -if user.admin
+              li =user.email
+
+      .available-employees-container
+        h3 Employees
+        ul
+          - for user in @users
+            -unless user.admin
+              li =user.email
+    .l-grid-2-2
+      .calendar-info
+        h1 Schedule
+        p
+          | Employee schedule
+          br
+          | April 20, 2014 - April 26th, 2014
+      .calendar
+        .calendar-shift-header.calendar-shift-header-1
+          | Mon
+        .calendar-shift-header.calendar-shift-header-2
+          | Tue
+        .calendar-shift-header.calendar-shift-header-3
+          | Wed
+        .calendar-shift-header.calendar-shift-header-4
+          | Thu
+        .calendar-shift-header.calendar-shift-header-5
+          | Fri
+        .calendar-shift-header.calendar-shift-header-6
+          | Sat
+        .calendar-shift-header.calendar-shift-header-7
+          | Sun
+        -(1..21).each do |n|
+          .calendar-shift class="calendar-shift-#{n}" class=('is-scheduled' if !@shifts_data[n][:scheduled].nil?)
+            / =@shifts_data[n]
+            select
+              -@shifts_data[n][:all].each do |user_shift|
+                option value="#{user_shift.id}" = user_shift.user.email
+            / - if @shifts_data[n][:scheduled].nil?
+
   | show all shifts here, from the admins perpective
   br
   = link_to 'generate schedule', admin_shifts_generate_schedule_path, method: :post
@@ -7,28 +52,3 @@
   br
   = link_to 'unpublish schedule', admin_shifts_unpublish_schedule_path, method: :post
   br
-  .l-row
-    .l-grid-1-2
-      .admin-container
-        h3 Administrators
-        - for user in @users
-          -if user.admin
-            =user.email
-            br
-
-      .available-employees-container
-        h3 All Employees
-        - for user in @users
-          -unless user.admin
-            =user.email
-            br
-    .l-grid-2-2
-      .calendar
-          -(1..21).each do |n|
-            .calendar-shift class="calendar-shift-#{n}" class=('is-scheduled' if !@shifts_data[n][:scheduled].nil?)
-              / =@shifts_data[n]
-              select
-                -@shifts_data[n][:all].each do |user_shift|
-                  option value="#{user_shift.id}" = user_shift.user.email
-              / - if @shifts_data[n][:scheduled].nil?
-                / | it's nil bro

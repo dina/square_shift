@@ -1,59 +1,97 @@
+.admin-container,
 .available-employees-container
+  text-align: right
+  margin-right: 20px
+  h3
+    padding: 5px 15px
+  ul
+    padding: 15px
+    li
+      padding-bottom: 10px
 
+.admin-container
+  margin-bottom: 30px
 
+.available-employees-container
+  color: white
+  background-color: rgba(37,135,183,0.83)
+  h3
+    background-color: #2587B7
 
+// calendar styles
 $calendar-shift-height: 80px
-$calendar-shift-width: 80px
+$calendar-shift-width: 100px
+$calendar-header-height: 25px
+
+.calendar-info
+  width: $calendar-shift-width*6
+  text-align: center
+  color: $darkGrey
 
 .calendar
   position: relative
-  height: $calendar-shift-height*3
+  height: $calendar-shift-height*3 + $calendar-header-height
   width: $calendar-shift-width*7
-  border: 1px solid pink
+
+.calendar-shift-header
+  position: absolute
+  height: $calendar-header-height
+  width: $calendar-shift-width
+  text-align: center
+  text-transform: uppercase
+  color: $darkGrey
 
 .calendar-shift
   position: absolute
   height: $calendar-shift-height
   width: $calendar-shift-width
-  border: 1px dotted black
   cursor: pointer
+  background-color: $defaultCalendarBackground
+  border: 1px solid white
+
 .calendar-shift.active
   background-color: rgb(129, 229, 189)
 
-
 .calendar-shift-1,
 .calendar-shift-2,
-.calendar-shift-3
+.calendar-shift-3,
+.calendar-shift-header-1
   left: 0px
 
 .calendar-shift-4,
 .calendar-shift-5,
-.calendar-shift-6
+.calendar-shift-6,
+.calendar-shift-header-2
   left: $calendar-shift-width
 
 .calendar-shift-7,
 .calendar-shift-8,
-.calendar-shift-9
+.calendar-shift-9,
+.calendar-shift-header-3
   left: $calendar-shift-width*2
 
 .calendar-shift-10,
 .calendar-shift-11,
-.calendar-shift-12
+.calendar-shift-12,
+.calendar-shift-header-4
   left: $calendar-shift-width*3
 
 .calendar-shift-13,
 .calendar-shift-14,
-.calendar-shift-15
+.calendar-shift-15,
+.calendar-shift-header-5
   left: $calendar-shift-width*4
 
 .calendar-shift-16,
 .calendar-shift-17,
-.calendar-shift-18
+.calendar-shift-18,
+.calendar-shift-header-6
   left: $calendar-shift-width*5
 
 .calendar-shift-19,
 .calendar-shift-20,
-.calendar-shift-21
+.calendar-shift-21,
+.calendar-shift-header-7
   left: $calendar-shift-width*6
 
 .calendar-shift-1,
@@ -63,7 +101,7 @@ $calendar-shift-width: 80px
 .calendar-shift-13,
 .calendar-shift-16,
 .calendar-shift-19
-  top: 0px
+  top: $calendar-header-height
 
 .calendar-shift-2,
 .calendar-shift-5,
@@ -72,7 +110,7 @@ $calendar-shift-width: 80px
 .calendar-shift-14,
 .calendar-shift-17,
 .calendar-shift-20
-  top: $calendar-shift-height
+  top: $calendar-shift-height+$calendar-header-height
 
 .calendar-shift-3,
 .calendar-shift-6,
@@ -81,4 +119,4 @@ $calendar-shift-width: 80px
 .calendar-shift-15,
 .calendar-shift-18,
 .calendar-shift-21
-  top: $calendar-shift-height*2
+  top: $calendar-shift-height*2+$calendar-header-height
