@@ -12,6 +12,16 @@ class Admin::ShiftsController < ApplicationController
     end
   end
 
+  # def test
+  #   @shifts_data = Shift.includes(:user_shifts=>:user).all.map do |shift|
+  #     shift_attrs = shift.attributes
+  #     scheduled_us = shift.user_shifts.detect{|us| us.scheduled?}
+  #     shift_attrs["scheduled_user_shift"] = scheduled_us ? (scheduled_us.attributes; attrs["user_name"] = scheduled_us.user.name; attrs) : nil
+  #     shift_attrs["user_shifts"] = shift.user_shifts.map{|us| attrs = us.attributes; attrs["user_name"] = us.user.name; attrs}
+  #     shift_attrs
+  #   end
+  # end
+
   def generate_schedule
     UserShift.generate_schedule!
     redirect_to admin_shifts_path
