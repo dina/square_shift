@@ -18,9 +18,17 @@ var ready = function() {
       data: {
         shift_ids: activeShiftsArray
       }
-    }).done(function() {});
+    }).done(function() {
+      $('.notification-modal, .modal-backdrop').fadeIn();
+    });
+  });
+
+  $('.modal-backdrop, .modal-close-button').click(function(){
+    $('.modal-backdrop, .modal').fadeOut();
   });
 };
+
+
 
 $(document).ready(ready);
 $(document).on('page:load', ready);

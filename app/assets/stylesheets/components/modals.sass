@@ -1,23 +1,41 @@
-.modal-container
+.modal-backdrop
+  display: none
   position: fixed
   top: 0px
   right: 0px
   bottom: 0px
   left: 0px
-  z-index: $modal-container-z-index
+  z-index: $modal-backdrop-z-index
   cursor: pointer
+  background-color: rgba(0, 0, 0, 0.1)
 
 .modal
-  position: absolute
+  display: none
+  position: fixed
+  z-index: $modal-z-index
 
-.settings-dropdown-modal
-  top: 60px
-  right: 10px
-  height: 100px
-  width: 300px
-  border: 1px solid rgba(115, 119, 122, 0.2)
-  border-radius: 3px
+.notification-modal
+  top: 40%
+  left: 50%
+  width: 620px
+  min-height: 300px
+  margin-top: -150px
+  margin-left: -320px
   background-color: white
 
-.modal-container, .modal
-  display: none
+.modal-close-button
+  position: absolute
+  top: 15px
+  right: 15px
+  height: 26px
+  width: 26px
+  cursor: pointer
+  background-image: image-url('close-button.png')
+  background-size: 100%
+
+.thank-you-image
+  margin: 30px 0px 20px 0px
+  height: 182px
+
+.availability-update-modal
+  text-align: center

@@ -21,10 +21,7 @@ javascript:
 
       - for shift in @all_shifts
         .calendar-shift data-id="#{shift.id}" class=('active' if @current_shift_ids.include?(shift.id)) class="calendar-shift-#{shift.id}"
-          / = shift.start_at
-          / br
-          / = shift.id
-    input.btn.btn-blue.update-shifts-btn value="Update"
+    input.btn.btn-blue.update-shifts-btn value="Update Availability" type="submit"
 
 
 
