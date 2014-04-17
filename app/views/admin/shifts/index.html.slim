@@ -1,3 +1,6 @@
+javascript:
+  var schedule_published = #{Schedule.published?}
+
 .l-content.margin-top-medium
   .l-row
     .l-grid-1-2
@@ -41,13 +44,13 @@
           .calendar-shift-time class="calendar-shift-time-#{index+1}"
             = shift.start_at.to_s(:time)
 
-
         -(1..21).each do |n|
           .calendar-shift class="calendar-shift-#{n}" class=('is-scheduled' if !@shifts_data[n][:scheduled].nil?)
             .styled-select
-              select
+              select.user-shift
                 -@shifts_data[n][:all].each do |user_shift|
-                  option value="#{user_shift.id}" = user_shift.user.name
-      .calendar-buttons
-        = button_to 'Generate Schedule', admin_shifts_generate_schedule_path, method: :post, class: "btn btn-white"
-        = button_to 'Publish Schedule', admin_shifts_publish_schedule_path, method: :post, class: "btn btn-blue"
+                  option value="#{user_shift.id}" selected=('selected' if user_shift.scheduled?) = user_shift.user.name
+      - unless Schedule.published?
+        .calendar-buttons
+          = button_to 'Generate Schedule', admin_shifts_generate_schedule_path, method: :post, class: "btn btn-white"
+          input.btn.btn-blue.publish-schedule-btn value="Publish Schedule" type="submit"

@@ -21,8 +21,6 @@ class UserShift < ActiveRecord::Base
 
     # set the 'scheduled' flags of new assignments
     UserShift.find(new_assignment_ids).each(&:schedule!)
-
-    redirect_to :index
   end
 
   def self.generate_schedule!

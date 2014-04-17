@@ -19,7 +19,7 @@ var ready = function() {
         shift_ids: activeShiftsArray
       }
     }).done(function() {
-      $('.notification-modal, .modal-backdrop').fadeIn();
+      $('.availability-update-modal, .modal-backdrop').fadeIn();
     });
   });
 

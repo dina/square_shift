@@ -20,7 +20,7 @@ class Admin::ShiftsController < ApplicationController
   def publish_schedule
     UserShift.update_assignments(params[:user_shift_ids])
     Schedule.publish!
-    redirect_to admin_shifts_path
+    render json: :none
   end
 
   def unpublish_schedule
