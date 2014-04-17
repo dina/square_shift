@@ -1,27 +1,39 @@
 <% from_user_shift = UserShift.find(notification.data['from_user_shift_id']) %>
 <% to_user_shift = UserShift.find(notification.data['to_user_shift_id']) %>
+<div class='lhs'>
+  <img src='assets/swap-icon-orange.png'>
+</div>
+<div class='rhs'>
+  <p class='date'>
+    <%= display_datetime notification.created_at %>
+  </p>
 
-<%= from_user_shift.user.name %> wants to trade shifts with you. Are you able trade from:
-</br>
-<%= display_shift_time(from_user_shift.shift.start_at, from_user_shift.shift.end_at) %>
-<b>to</b>
-<%= display_shift_time(to_user_shift.shift.start_at, to_user_shift.shift.end_at) %>
-?
-<%= button_to 'Yes', trade_shift_notification_path(notification),
-  method: :post,
-  params: {
-    from_user_shift_id: from_user_shift.id,
-    to_user_shift_id: to_user_shift.id,
-    trade: true
-  },
-  data: { confirm: "Are you sure you want to trade your shift?" }
-%>
-<%= button_to 'No', trade_shift_notification_path(notification),
-  method: :post,
-  params: {
-    from_user_shift_id: from_user_shift.id,
-    to_user_shift_id: to_user_shift.id,
-    trade: false
-  },
-  data: { confirm: "Are you sure that you cannot trade your shift?" }
-%>
+  <%= from_user_shift.user.name %> wants to trade shifts from:
+  </br>
+  <span><%= display_shift_time(from_user_shift.shift) %></span>
+  to
+  <span><%= display_shift_time(to_user_shift.shift) %></span>
+  <br /><br />
+  Accept for a merit?
+
+  <%= button_to 'Yes', trade_shift_notification_path(notification),
+    method: :post,
+    params: {
+      from_user_shift_id: from_user_shift.id,
+      to_user_shift_id: to_user_shift.id,
+      trade: true
+    },
+    data: { confirm: "Are you sure you want to trade your shift?" },
+    class: :btn
+  %>
+  <%= button_to 'No', trade_shift_notification_path(notification),
+    method: :post,
+    params: {
+      from_user_shift_id: from_user_shift.id,
+      to_user_shift_id: to_user_shift.id,
+      trade: false
+    },
+    data: { confirm: "Are you sure that you cannot trade your shift?" },
+    class: :btn
+  %>
+</div>

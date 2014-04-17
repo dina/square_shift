@@ -1,21 +1,32 @@
-<p>Actionable</p>
+<div class='merits'>
+  <h2>Merits</h2>
+  <p>Last Month's Champion</p>
+  <img src='assets/Champion.png'>
 
-<ul>
-  <% notifications.actionable.each do |notification| %>
-    <li>
-      <%= render partial: "shared/notifications/#{notification.notification_type}", locals: { notification: notification } %>
-    </li>
-  <% end %>
-</ul>
+</div>
 
-</br>
+<div class='notifications'>
+  <div class='actionable'>
+    <h2>Notifications</h2>
+    <ul>
+      <hr />
+      <% notifications.actionable.each do |notification| %>
+        <li>
+          <%= render partial: "shared/notifications/#{notification.notification_type}", locals: { notification: notification } %>
+        </li>
+        <hr />
+      <% end %>
+    </ul>
+  </div>
 
-<p>Informational</p>
-
-<ul>
-  <% notifications.informational.each do |notification| %>
-    <li>
-      <%= render partial: "shared/notifications/#{notification.notification_type}", locals: { notification: notification } %>
-    </li>
-  <% end %>
-</ul>
+  <div class='informational'>
+    <p>Informational</p>
+    <ul>
+      <% notifications.informational.each do |notification| %>
+        <li>
+          <%= render partial: "shared/notifications/#{notification.notification_type}", locals: { notification: notification } %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

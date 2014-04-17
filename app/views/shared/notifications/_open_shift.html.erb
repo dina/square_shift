@@ -1,11 +1,24 @@
 <% shift = Shift.find(notification.data['shift_id']) %>
-No one is available for this shift: <%= display_shift_time(shift.start_at, shift.end_at) %>. Take this shift for a badge?
-<%= button_to 'Yes', add_shift_notification_path(notification),
-  method: :post,
-  params: { shift_id: shift.id },
-  data: { confirm: "Are you sure you want to take this shift?" }
-%>
-<%= button_to 'No', notification_path(notification),
-  method: :delete,
-  data: { confirm: "Are you sure you want to trade your shift?" }
-%>
+<div class='lhs'>
+  <img src='assets/EmptyShift-icon-orange.png'>
+</div>
+<div class='rhs'>
+  <p class='date'>
+    <%= display_datetime notification.created_at %>
+  </p>
+  No one is available for this shift: <span><%= display_shift_time(shift) %></span>.
+  <br /><br />
+  Accept for a merit?
+
+  <%= button_to 'Yes', add_shift_notification_path(notification),
+    method: :post,
+    params: { shift_id: shift.id },
+    data: { confirm: "Are you sure you want to take this shift?" },
+    class: :btn
+  %>
+  <%= button_to ' No ', notification_path(notification),
+    method: :delete,
+    data: { confirm: "Are you sure you want to trade your shift?" },
+    class: :btn
+  %>
+</div>

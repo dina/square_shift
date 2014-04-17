@@ -1,10 +1,21 @@
 <% user_shift = UserShift.find(notification.data['user_shift_id']) %>
-<% shift_time = display_shift_time(user_shift.shift.start_at, user_shift.shift.end_at) %>
+<% shift_time = display_shift_time(user_shift.shift) %>
+<div class='lhs'>
+  <img src='assets/coverme-icon-orange.png'>
+</div>
+<div class='rhs'>
+  <p class='date'>
+    <%= display_datetime notification.created_at %>
+  </p>
+  <%= user_shift.user.name %> can't make his/her shift at <span><%= shift_time %></span>.
+  <br /><br />
+  Accept for a merit?
 
-<%= user_shift.user.name %> can't make his/her shift at <%= shift_time %>. Take this shift for a badge?
-<%= button_to 'Yes', take_shift_notification_path(notification),
-  method: :post,
-  params: { user_shift_id: user_shift.id },
-  data: { confirm: "Are you sure you want to take this shift?" }
-%>
-<%= button_to 'No', notification_path(notification), method: :delete %>
+  <%= button_to 'Yes', take_shift_notification_path(notification),
+    method: :post,
+    params: { user_shift_id: user_shift.id },
+    data: { confirm: "Are you sure you want to take this shift?" },
+    class: :btn
+  %>
+  <%= button_to ' No ', notification_path(notification), method: :delete, class: :btn %>
+</div>

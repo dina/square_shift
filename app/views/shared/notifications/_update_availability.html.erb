@@ -1,3 +1,10 @@
-<% unless current_user.provided_availability? %>
+<div class='lhs'>
+  <img src='assets/availability-icon-orange.png'>
+</div>
+<div class='rhs'>
+  <p class='date'>
+    <%= display_datetime notification.created_at %>
+  </p>
   Please update your availability <%= link_to('here', user_shifts_path) %>.
-<% end %>
+<br /><br />
+</div>
