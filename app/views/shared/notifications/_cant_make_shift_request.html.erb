@@ -1,12 +1,10 @@
-<p>
-  <% user_shift = UserShift.find(notification.data['user_shift_id']) %>
-  <% shift_time = display_shift_time(user_shift.shift.start_at, user_shift.shift.end_at) %>
+<% user_shift = UserShift.find(notification.data['user_shift_id']) %>
+<% shift_time = display_shift_time(user_shift.shift.start_at, user_shift.shift.end_at) %>
 
-  <%= user_shift.user.email %> can't make their shift at <%= shift_time %>. Take this shift for a badge?
-  <%= button_to 'Yes', add_shift_notification_path(notification),
-    method: :post,
-    params: { shift_id: user_shift.shift.id },
-    data: { confirm: "Are you sure you want to take this shift?" }
-  %>
-  <%= button_to 'No', notification_path(notification), method: :delete %>
-</p>
+<%= user_shift.user.name %> can't make his/her shift at <%= shift_time %>. Take this shift for a badge?
+<%= button_to 'Yes', take_shift_notification_path(notification),
+  method: :post,
+  params: { user_shift_id: user_shift.id },
+  data: { confirm: "Are you sure you want to take this shift?" }
+%>
+<%= button_to 'No', notification_path(notification), method: :delete %>

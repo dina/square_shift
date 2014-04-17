@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :notifications, only: [ :index, :destroy ] do
     member do
       post :add_shift
+      post :trade_shift
+      post :take_shift
     end
   end
 

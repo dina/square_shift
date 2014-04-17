@@ -39,7 +39,6 @@ ActiveRecord::Schema.define(version: 20140416192051) do
     t.integer  "target_user_id"
     t.integer  "target_user_shift_id"
     t.integer  "target_shift_id"
-    t.integer  "reference_request_id"
     t.string   "status"
     t.string   "type"
     t.text     "reason"
