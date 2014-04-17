@@ -1,4 +1,8 @@
+var app = angular.module("SquareShift", ['ngResource']);
+
 var ready = function() {
+  mySchedule();
+
   $('.availability-calendar').children('.calendar-shift').click(function(){
     var shiftId = parseInt($(this).attr('data-id'));
     if (activeShiftsArray.indexOf(shiftId) > -1) {
@@ -28,7 +32,15 @@ var ready = function() {
   });
 };
 
+var mySchedule = function() {
+  // var requestShiftTradeModeIsOn = false;
 
+  // $('.request-shift-trade-btn').click(function(){
+  //   // alert('i am requesting a shift trade!!');
+  //   requestShiftTradeModeIsOn = true;
+  //   $('.styled-select').fadeIn();
+  // });
+}
 
 $(document).ready(ready);
 $(document).on('page:load', ready);

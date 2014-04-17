@@ -2,7 +2,6 @@ class ShiftChangeRequestsController < ApplicationController
   before_action :authenticate_user!, :ensure_published!, :set_shift_change_request
   before_action :authorize_user_for_response!, :check_original_user!, :ensure_request_is_open!, only: [:accept_cover_request, :decline_cover_request]
 
-  # COVER REQUESTS
   def create_cover_request
     original_user_shift = UserShift.find(params[:original_user_shift_id])
     target_user = User.find(params[:target_user_id])
@@ -15,6 +14,28 @@ class ShiftChangeRequestsController < ApplicationController
       ShiftChangeRequest.create_cover_request(current_user, original_user_shift, target_user)
       render json: :none
     end
+  end
+
+  def user_schedule
+    # @all_shifts = Shift.all
+    # @current_user_shift_ids = current_user.shifts.map &:id
+    # @users = User.all
+    # @shifts = {}
+    # Shift.includes(:user_shifts=>:user).all.each do |shift|
+    #   @shifts[shift.id] = {
+    #       scheduled: shift.user_shifts.detect{|us| us.scheduled?},
+    #       all: shift.user_shifts
+    #   }
+    # end
+
+    # @shifts = Shift.includes(:user_shifts=>:user)
+
+    # @shifts = render :json => @customer, :include => :calls
+    # shifts = Shift.all
+
+    # @shifts = shifts.as_json(:include => { :user_shifts })
+    shifts = Shift.all
+    @shifts = shifts.as_json(include: :user_shifts)
   end
 
   def accept_cover_request

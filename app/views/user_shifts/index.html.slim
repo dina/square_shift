@@ -1,5 +1,5 @@
 javascript:
-  var activeShiftsArray = #{@current_shift_ids};
+  var activeShiftsArray = parseJSON( #{@current_shift_ids} );
 
 .l-content.margin-top-medium
   .l-row
@@ -26,6 +26,7 @@ javascript:
       - for shift in @all_shifts
         .calendar-shift data-id="#{shift.id}" class=('active' if @current_shift_ids.include?(shift.id)) class="calendar-shift-#{shift.id}"
 
+<<<<<<< HEAD
       - if Schedule.published?
         .calendar-disabled-overlay
           .notice
@@ -35,6 +36,11 @@ javascript:
       input.btn.btn-blue.update-shifts-btn value="Update Availability" type="submit"
 
 
+||||||| merged common ancestors
+
+
+=======
+>>>>>>> WIP Trade shifts request
   / .current-user-shifts
   /   =@current_shift_ids
 

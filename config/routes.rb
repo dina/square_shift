@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   post 'shift_changes_request/decline_cover_request'
 
 
+  get '/my_schedule', to: 'shift_change_requests#user_schedule'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

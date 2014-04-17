@@ -18,3 +18,5 @@ group :assets do
 end
 
 gem 'slim'
+
+gem 'angularjs-rails'

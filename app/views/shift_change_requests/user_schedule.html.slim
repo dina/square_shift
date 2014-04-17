@@ -1,0 +1,31 @@
+javascript:
+  // var shiftsData = #{@shifts_data.to_json};
+
+  var shifts = #{ raw @shifts };
+
+
+  app.controller('MyScheduleCtrl', ['$scope', '$resource', function($scope, $resource) {
+    $scope.requestTradeModeIsOn = false;
+
+
+
+    $scope.enterRequestTradeMode = function() {
+      $scope.requestTradeModeIsOn = true;
+    };
+
+  }]);
+
+.l-content.margin-top-medium ng-app="SquareShift" ng-controller="MyScheduleCtrl"
+  .l-row
+    .calendar.my-schedule-calendar
+      .calendar-shift-header.calendar-shift-header-1 Mon
+      .calendar-shift-header.calendar-shift-header-2 Tue
+      .calendar-shift-header.calendar-shift-header-3 Wed
+      .calendar-shift-header.calendar-shift-header-4 Thu
+      .calendar-shift-header.calendar-shift-header-5 Fri
+      .calendar-shift-header.calendar-shift-header-6 Sat
+      .calendar-shift-header.calendar-shift-header-7 Sun
+      .calendar-shift ng-repeat="shift in shifts" class="calendar-shift-{{shift.id}}"
+
+    input.btn.btn-blue.request-shift-trade-btn value="Request Shift Trade" type="submit" ng-click="enterRequestTradeMode()" ng-hide="requestTradeModeIsOn"
+    input.btn.btn-blue.request-shift-trade-btn value="Submit Trade Request" type="submit" ng-show="requestTradeModeIsOn"
