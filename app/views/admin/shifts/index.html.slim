@@ -36,6 +36,12 @@
           | Sat
         .calendar-shift-header.calendar-shift-header-7
           | Sun
+
+        - Shift.limit(3).each_with_index do |shift, index|
+          .calendar-shift-time class="calendar-shift-time-#{index+1}"
+            = shift.start_at.to_s(:time)
+
+
         -(1..21).each do |n|
           .calendar-shift class="calendar-shift-#{n}" class=('is-scheduled' if !@shifts_data[n][:scheduled].nil?)
             .styled-select
@@ -45,4 +51,3 @@
       .calendar-buttons
         = button_to 'Generate Schedule', admin_shifts_generate_schedule_path, method: :post, class: "btn btn-white"
         = button_to 'Publish Schedule', admin_shifts_publish_schedule_path, method: :post, class: "btn btn-blue"
-        = button_to 'Unpublish Schedule', admin_shifts_unpublish_schedule_path, method: :post, class: "btn btn-blue btn-is-inactive"
