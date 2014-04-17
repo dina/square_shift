@@ -18,6 +18,7 @@ class Admin::ShiftsController < ApplicationController
   end
 
   def publish_schedule
+    UserShift.update_assignments(params[:user_shift_ids])
     Schedule.publish!
     redirect_to admin_shifts_path
   end
@@ -25,15 +26,6 @@ class Admin::ShiftsController < ApplicationController
   def unpublish_schedule
     Schedule.unpublish!
     redirect_to admin_shifts_path
-  end
-
-  # expected params: array of assigned user_shift_ids
-  # saves the new assignments
-  def update_assignments
-    new_assignments = [1,3,4,6] # TODO: parse this info from the params (possibly from params[:assignments])
-    UserShift.update_assignments(new_assignments)
-
-    redirect_to :index
   end
 
   private

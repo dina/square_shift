@@ -11,7 +11,7 @@ class UserShift < ActiveRecord::Base
   scope :scheduled, -> {where(scheduled: true)}
 
   # saves the new assignments
-  def self.update_assignments(new_assignments)
+  def self.update_assignments(new_assignment_ids)
     # clear the initial 'scheduled' flags
     UserShift.scheduled.each(&:unschedule!)
 
@@ -20,7 +20,7 @@ class UserShift < ActiveRecord::Base
     # For instance, this code can be fooled into setting the 'scheduled' flags for two user_shifts that correspond to the same shift.
 
     # set the 'scheduled' flags of new assignments
-    UserShift.find(new_assignments).each(&:schedule!)
+    UserShift.find(new_assignment_ids).each(&:schedule!)
 
     redirect_to :index
   end

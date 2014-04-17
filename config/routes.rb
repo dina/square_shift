@@ -17,7 +17,11 @@ Rails.application.routes.draw do
   post 'admin/shifts/generate_schedule'
   post 'admin/shifts/publish_schedule'
   post 'admin/shifts/unpublish_schedule'
-  post 'admin/shifts/update_assignments'
+
+  post 'shift_changes_request/create_cover_request'
+  post 'shift_changes_request/accept_cover_request'
+  post 'shift_changes_request/decline_cover_request'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
