@@ -1,6 +1,11 @@
-<p>
-  <% shift = Shift.find(notification.data['shift_id']) %>
-  No one is available for this shift: <%= display_shift_time(shift.start_at, shift.end_at) %>. Take this shift for a badge?
-  <%= button_to 'Yes', user_shifts_update_selections_path, method: :put, params: { 'shift_ids[]' => [shift.id] } %>
-  <%= button_to 'No', user_shifts_update_selections_path, method: :put, params: { 'shift_ids[]' => [shift.id] } %>
-</p>
+<% shift = Shift.find(notification.data['shift_id']) %>
+No one is available for this shift: <%= display_shift_time(shift.start_at, shift.end_at) %>. Take this shift for a badge?
+<%= button_to 'Yes', add_shift_notification_path(notification),
+  method: :post,
+  params: { shift_id: shift.id },
+  data: { confirm: "Are you sure you want to take this shift?" }
+%>
+<%= button_to 'No', notification_path(notification),
+  method: :delete,
+  data: { confirm: "Are you sure you want to trade your shift?" }
+%>
