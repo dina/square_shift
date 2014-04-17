@@ -10,6 +10,8 @@ class CreateShiftChangeRequests < ActiveRecord::Migration
       t.integer :target_user_shift_id
       t.integer :target_shift_id
 
+      t.integer :reference_request_id
+
       t.string :status
       t.string :type
       t.text :reason
