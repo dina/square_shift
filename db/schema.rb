@@ -32,11 +32,15 @@ ActiveRecord::Schema.define(version: 20140416192051) do
   end
 
   create_table "shift_change_requests", force: true do |t|
-    t.integer  "initiator_id"
+    t.integer  "initiator_id",           null: false
+    t.integer  "original_user_id"
     t.integer  "original_user_shift_id"
+    t.integer  "original_shift_id"
     t.integer  "target_user_id"
     t.integer  "target_user_shift_id"
-    t.integer  "status"
+    t.integer  "target_shift_id"
+    t.string   "status"
+    t.string   "type"
     t.text     "reason"
     t.datetime "created_at"
     t.datetime "updated_at"

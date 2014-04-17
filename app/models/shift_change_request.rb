@@ -7,6 +7,7 @@ class ShiftChangeRequest < ActiveRecord::Base
 
   module Type
     SWAP = "swap"
+    COVER = "cover"
   end
 
   belongs_to :initiator, class_name:"User"
@@ -20,22 +21,18 @@ class ShiftChangeRequest < ActiveRecord::Base
   before_create { self.status ||= Status::INITIATED }
 
 
-  # SWAP REQUESTS
+  # COVER REQUESTS
+  def self.create_cover_request(initiator, original_user_shift, target_user)
+    tus = target_user ? UserShift.find_by(user: target_user, shift: original_user_shift.shift) : nil
 
-  def self.create_swap_request(initiator, original_user_shift, target_user_shift)
-    raise "Not Authorized!" if initiator != original_user_shift.user
-
-    # assume, for now, that only the original_user can initiate a swap request for one of his user_shifts
-    create(initiator: initiator, type: Type::SWAP,
-           original_user: original_user_shift.user, target_user: target_user_shift.user,
-           original_user_shift: original_user_shift, target_user_shift: target_user_shift,
-           original_shift: original_user_shift.shift, target_shift: target_user_shift.shift
+    create(initiator: initiator, type: Type::COVER,
+           original_user: original_user_shift.user, target_user: target_user,
+           original_user_shift: original_user_shift, target_user_shift: tus,
+           original_shift: original_user_shift.shift
     )
   end
 
-  def accept_swap_request(user)
-    raise "Not Authorized" if target_user != user
-
+  def accept_cover_request
     original_user.user_shifts.create(shift: target_shift)
     target_user.user_shifts.create(shift: original_shift)
     original_user_shift.destroy
@@ -44,9 +41,7 @@ class ShiftChangeRequest < ActiveRecord::Base
     save
   end
 
-  def decline_swap_request(user)
-    raise "Not Authorized" if target_user != user
-
+  def decline_cover_request
     status = ShiftChangeRequest::Status::DECLINED
     save
   end
