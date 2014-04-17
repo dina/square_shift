@@ -5,7 +5,7 @@ class NotificationsController < ApplicationController
   before_action :load_notifications, except: [:index]
 
   def index
-    @notifications = Notification.all
+    @notifications = Notification.all.limit(3)
   end
 
   # Adds the shift to your schedule.
