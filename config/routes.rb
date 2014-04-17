@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'users/shifts'
+
   devise_for :users
 
   root 'notifications#index'
