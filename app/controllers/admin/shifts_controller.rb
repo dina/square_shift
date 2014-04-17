@@ -7,7 +7,7 @@ class Admin::ShiftsController < ApplicationController
     Shift.includes(:user_shifts=>:user).all.each do |shift|
       @shifts_data[shift.id] = {
           scheduled: shift.user_shifts.detect{|us| us.scheduled?},
-          all: shift.user_shifts
+          all: shift.user_shifts.map{|us| attrs = us.attributes; attrs["user_name"] = us.user.name; attrs}
       }
     end
   end
