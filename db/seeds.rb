@@ -3,32 +3,40 @@ User.create(
   name: "Dina",
   phone_number: "5555555555",
   admin: true,
-  email: "dina@adminsquare.com",
-  password: "adminsRus"
+  email: "dina@squareup.com",
+  password: "password"
 )
 
 User.create(
-  name: "Jane",
+  name: "Claudia",
   phone_number: "5555555555",
   admin: false,
-  email: "hello@adminsquare.com",
-  password: "yeahyeah"
+  email: "claudia@squareup.com",
+  password: "password"
 )
 
 User.create(
-  name: "Adam",
+  name: "Amir",
   phone_number: "5555555555",
   admin: false,
-  email: "world@adminsquare.com",
-  password: "yeahyeah"
+  email: "amir@squareup.com",
+  password: "password"
 )
 
 User.create(
-  name: "Sally",
+  name: "Scott",
   phone_number: "5555555555",
   admin: true,
-  email: "yeah@adminsquare.com",
-  password: "yeahyeah"
+  email: "scott@squareup.com",
+  password: "password"
+)
+
+User.create(
+  name: "Yunus",
+  phone_number: "5555555555",
+  admin: true,
+  email: "yunus@squareup.com",
+  password: "password"
 )
 
 today = DateTime.now.utc.beginning_of_day
