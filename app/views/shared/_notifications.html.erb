@@ -1,3 +1,5 @@
+<h1>Dashboard</h1>
+
 <div class='side-nav'>
   <div class='box'>
     <h2>Merits</h2>
@@ -34,12 +36,14 @@
   </div>
 
   <div class='informational'>
-    <p>Informational</p>
+    <h2>Activity</h2>
     <ul>
+      <hr />
       <% notifications.informational.each do |notification| %>
         <li>
-          <%= render partial: "shared/notifications/#{notification.notification_type}", locals: { notification: notification } %>
+          <div class='lhs'>●</div><%= render partial: "shared/notifications/#{notification.notification_type}", locals: { notification: notification } %>
         </li>
+        <hr />
       <% end %>
     </ul>
   </div>

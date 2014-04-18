@@ -1,1 +1,6 @@
-The schedule <%= link_to('schedule', user_shifts_path) %> has been recently updated.
+<div class='rhs'>
+  <p class='date'>
+    <%= display_datetime notification.created_at %>
+  </p>
+  <p>The schedule <%= link_to('schedule', user_shifts_path) %> has been recently updated.</p>
+</div>

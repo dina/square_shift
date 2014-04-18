@@ -1,5 +1,11 @@
 <% from_user_shift = UserShift.find(notification.data['from_user_shift_id']) %>
 <% to_user_shift = UserShift.find(notification.data['to_user_shift_id']) %>
-
-<%= from_user_shift.user.name %> traded shifts with <%= to_user_shift.user.name %>.
-See the latest <%= link_to('schedule', user_shifts_path) %>
+<div class='rhs'>
+  <p class='date'>
+    <%= display_datetime notification.created_at %>
+  </p>
+  <p>
+    <%= from_user_shift.user.name %> traded shifts with <%= to_user_shift.user.name %>.
+    See the latest <%= link_to('schedule', user_shifts_path) %>
+  </p>
+</div>
