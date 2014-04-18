@@ -17,7 +17,7 @@ javascript:
       targetUser = $(this).val();
     });
 
-    $('.request-shift-trade-btn').click(function(){
+    $('.submit-trade-request-btn').click(function(){
       $.ajax({
         url: "/shift_change_requests/create_cover_request",
         type: "POST",
