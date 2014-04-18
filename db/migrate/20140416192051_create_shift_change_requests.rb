@@ -13,7 +13,7 @@ class CreateShiftChangeRequests < ActiveRecord::Migration
       t.integer :reference_request_id
 
       t.string :status
-      t.string :type
+      t.string :kind
       t.text :reason
 
       t.timestamps

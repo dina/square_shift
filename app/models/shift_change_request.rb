@@ -6,7 +6,7 @@ class ShiftChangeRequest < ActiveRecord::Base
     CLOSED = "closed" # indirectly by others
   end
 
-  module Type
+  module Kind
     SWAP = "swap"
     COVER = "cover"
   end
@@ -19,7 +19,7 @@ class ShiftChangeRequest < ActiveRecord::Base
   belongs_to :target_shift, class_name: "Shift"
   belongs_to :target_user_shift, class_name: "UserShift"
 
-  scope :open,->{where(type: Status::OPEN)}
+  scope :open,->{where(kind: Status::OPEN)}
 
   before_create { self.status ||= Status::OPEN }
 
@@ -32,7 +32,7 @@ class ShiftChangeRequest < ActiveRecord::Base
     target_users = target_user ? [target_user] : (User.all - original_user_shift.user)
 
     creation_proc = Proc.new do |tu, ref_req_id|
-      create(initiator: initiator, type: Type::COVER, reference_request_id: ref_req_id,
+      create(initiator: initiator, kind: Kind::COVER, reference_request_id: ref_req_id,
              original_user: original_user_shift.user, target_user: tu,
              original_user_shift: original_user_shift,
              original_shift: original_user_shift.shift)
