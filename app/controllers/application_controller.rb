@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  before_filter :authenticate
+
   def reset_application
     s = Schedule.last
     s.published = false
@@ -13,6 +15,14 @@ class ApplicationController < ActionController::Base
     ).each(&:destroy)
 
     redirect_to :root
+  end
+
+  protected
+
+  def authenticate
+    authenticate_or_request_with_http_basic do |username, password|
+      username == "admin" && password == "SquareShift4EVA"
+    end
   end
 
 end
