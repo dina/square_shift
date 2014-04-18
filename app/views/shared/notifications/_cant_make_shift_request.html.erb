@@ -1,4 +1,4 @@
-<% user_shift = UserShift.find(notification.data['user_shift_id']) %>
+<% user_shift = UserShift.find(notification.user_shift_id) %>
 <% shift_time = display_shift_time(user_shift.shift) %>
 <div class='lhs'>
   <img src='assets/coverme-icon-orange.png'>

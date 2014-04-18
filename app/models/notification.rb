@@ -7,6 +7,7 @@ class Notification < ActiveRecord::Base
   NEW_SCHEDULE =  "new_schedule"
   UPDATED_SCHEDULE =  "updated_schedule"
   SHIFT_TRADE =  "shift_trade"
+  SHIFT_TAKEN = "shift_taken"
 
   TYPES = [
     UPDATE_AVAILABILITY,
@@ -15,7 +16,8 @@ class Notification < ActiveRecord::Base
     CANT_MAKE_SHIFT_REQUEST,
     NEW_SCHEDULE,
     UPDATED_SCHEDULE,
-    SHIFT_TRADE
+    SHIFT_TRADE,
+    SHIFT_TAKEN
   ].freeze
 
   belongs_to :user

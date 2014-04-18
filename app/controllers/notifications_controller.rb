@@ -5,7 +5,7 @@ class NotificationsController < ApplicationController
   before_action :load_notifications, except: [:index]
 
   def index
-    @notifications = Notification.all.limit(3)
+    @notifications = Notification.where(user: current_user)
   end
 
   # Adds the shift to your schedule.
@@ -31,15 +31,21 @@ class NotificationsController < ApplicationController
     original_user = user_shift.user
     user_shift.user = current_user
     if user_shift.save
-      @notification.destroy
-      Notification.create(user: original_user, action: false,
-        notification_type: 'shift_taken', data: { name: current_user.name })
+      Notification.where(
+        notification_type: @notification.notification_type,
+        user_shift: user_shift
+      ).each(&:destroy)
+      Notification.where(
+        user: original_user,
+        action: false,
+        notification_type: Notification::SHIFT_TAKEN,
+        user_shift: user_shift).first_or_create
       flash[:notice] = 'We have successfully added your shift!'
     else
-      
-
+      flash[:error] = error_msg(user_shift)
     end
-    end
+    redirect_to :root
+  end
 
   # Swaps shift between two employees.
   def trade_shift
