@@ -8,7 +8,7 @@ User.create(
 )
 
 User.create(
-  name: "Claudia",
+  name: "Claw",
   phone_number: "5555555555",
   admin: false,
   email: "claudia@squareup.com",
@@ -60,15 +60,15 @@ end
   Shift.create(start_at: day + 16.hours, end_at: day + 20.hours)
 end
 
-users = User.all
+users = User.where("name in ('Mike', 'Scott')")
 shifts = Shift.all
-1.upto(50) do |i|
+1.upto(20) do |i|
   user_offset = Random.new.rand(users.count)
   shift_offset = Random.new.rand(shifts.count)
   UserShift.where(user: users[user_offset], shift: shifts[shift_offset]).first_or_create
 end
 
-UserShift.generate_schedule!
+# UserShift.generate_schedule!
 
 User.all.each do |user|
   # Notification.create(user: user, action: true, notification_type: 'cant_make_shift_request',
@@ -81,6 +81,6 @@ User.all.each do |user|
   # Notification.create(user: users[1], action: true, notification_type: 'trade_shift_request',
     # data: { from_user_shift_id: UserShift.scheduled.first.id, to_user_shift_id: UserShift.scheduled.last.id })
   Notification.create(user: user, action: true, notification_type: 'update_availability',
-    data: { user_id: users[2].id })
+    data: { user_id: users[1].id })
   Notification.create(user: user, action: false, notification_type: 'updated_schedule')
 end
