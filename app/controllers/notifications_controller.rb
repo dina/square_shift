@@ -53,6 +53,7 @@ class NotificationsController < ApplicationController
 
   def destroy
     @notification.destroy
+    redirect_to :root
   end
 
   private
