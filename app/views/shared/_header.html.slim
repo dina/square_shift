@@ -21,3 +21,4 @@
         li =link_to_unless_current "My Schedule", my_schedule_path, class: "menu-list-item"
       - if signed_in?
         li.sign-out= link_to "Sign out", destroy_user_session_path, method: :delete, style: "color:#85898c; margin-left:40px; text-decoration: none;"
+      li =link_to "reset", reset_application_path, style: "color:#3d454d; text-decoration: none;"

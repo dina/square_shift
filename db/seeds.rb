@@ -1,9 +1,9 @@
 # rake db:seed
 User.create(
-  name: "John",
+  name: "Dina",
   phone_number: "5555555555",
   admin: true,
-  email: "admin@adminsquare.com",
+  email: "dina@adminsquare.com",
   password: "adminsRus"
 )
 
@@ -55,8 +55,8 @@ end
 UserShift.generate_schedule!
 
 User.all.each do |user|
-  Notification.create(user: user, action: true, notification_type: 'cant_make_shift_request',
-    user_shift_id: UserShift.scheduled.last.id)
+  # Notification.create(user: user, action: true, notification_type: 'cant_make_shift_request',
+  #   user_shift_id: UserShift.scheduled.last.id)
   Notification.create(user: user, action: false, notification_type: 'new_schedule')
   # Notification.create(user: users[1], action: true, notification_type: 'open_shift',
   #   data: { shift_id: Shift.first.id })

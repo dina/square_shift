@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'reset_application', to: 'application#reset_application'
   get 'user_shifts', to: 'user_shifts#index'
   post 'user_shifts/update_selections'
   get 'admin/shifts', to: 'admin/shifts#index'
