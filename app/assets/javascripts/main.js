@@ -1,4 +1,4 @@
-var app = angular.module("SquareShift", ['ngResource']);
+
 
 var ready = function() {
   mySchedule();

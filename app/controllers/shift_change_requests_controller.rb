@@ -17,6 +17,7 @@ class ShiftChangeRequestsController < ApplicationController
   end
 
   def user_schedule
+<<<<<<< HEAD
     # @all_shifts = Shift.all
     # @current_user_shift_ids = current_user.shifts.map &:id
     # @users = User.all
@@ -49,9 +50,38 @@ class ShiftChangeRequestsController < ApplicationController
   end
 
   private
+||||||| merged common ancestors
+    # @all_shifts = Shift.all
+    # @current_user_shift_ids = current_user.shifts.map &:id
+    # @users = User.all
+    # @shifts = {}
+    # Shift.includes(:user_shifts=>:user).all.each do |shift|
+    #   @shifts[shift.id] = {
+    #       scheduled: shift.user_shifts.detect{|us| us.scheduled?},
+    #       all: shift.user_shifts
+    #   }
+    # end
 
+    # @shifts = Shift.includes(:user_shifts=>:user)
+
+    # @shifts = render :json => @customer, :include => :calls
+    # shifts = Shift.all
+
+    # @shifts = shifts.as_json(:include => { :user_shifts })
+    shifts = Shift.all
+    @shifts = shifts.as_json(include: :user_shifts)
+
+=======
+    @shifts = Shift.includes([{:user_shifts => :user}]).to_json(:include =>  { :user_shifts => {:include => :user} } )
+>>>>>>> WIP shift trade request.
+
+<<<<<<< HEAD
   def ensure_published!
     render json: {error: "Not allowed before publishing!"}, status: 403 if Schedule.published?
+||||||| merged common ancestors
+=======
+    @current_user_shift_ids = current_user.user_shifts.scheduled.pluck(:shift_id)
+>>>>>>> WIP shift trade request.
   end
 
   def set_shift_change_request

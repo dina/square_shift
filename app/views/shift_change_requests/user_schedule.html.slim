@@ -1,18 +1,48 @@
 javascript:
-  // var shiftsData = #{@shifts_data.to_json};
+  var app = angular.module("SquareShift", ['ngResource']);
 
-  var shifts = #{ raw @shifts };
+  var shiftsDebug = #{ raw @shifts  };
+  var currentUserShiftIdsDegbug = #{ raw @current_user_shift_ids };
 
+  var originalUserShiftId = 0;
+  var targetUser = 0;
+
+  $(document).ready(function(){
+    $('select').change(function(){
+      $('.modal-backdrop, .request-shift-trade-modal').fadeIn();
+      originalUserShiftId = $(this).parent('.styled-select').siblings('.original-user-shift-id').val();
+      targetUser = $(this).val();
+    });
+
+    $('.submit-trade-request-btn').click(function(){
+      $.ajax({
+        url: "/user_shifts/update_selections",
+        type: "POST",
+        data: {
+          shift_ids: activeShiftsArray
+        }
+      }).done(function() {
+        $('.notification-modal, .modal-backdrop').fadeIn();
+      });
+    });
+
+    $('.cancel-trade-request-btn').click(function(){
+      $('.modal-backdrop, .request-shift-trade-modal').fadeOut();
+    });
+  });
 
   app.controller('MyScheduleCtrl', ['$scope', '$resource', function($scope, $resource) {
     $scope.requestTradeModeIsOn = false;
-
-
+    $scope.shifts = #{ raw @shifts  };
+    $scope.currentUserShiftIds = #{ raw @current_user_shift_ids };
 
     $scope.enterRequestTradeMode = function() {
       $scope.requestTradeModeIsOn = true;
     };
 
+    $scope.requestTradeModeIsOnAndShiftIsCurrentUserShift = function(shiftId) {
+      return $scope.requestTradeModeIsOn && $scope.currentUserShiftIds.indexOf(shiftId) > -1;
+    };
   }]);
 
 .l-content.margin-top-medium ng-app="SquareShift" ng-controller="MyScheduleCtrl"
@@ -26,6 +56,19 @@ javascript:
       .calendar-shift-header.calendar-shift-header-6 Sat
       .calendar-shift-header.calendar-shift-header-7 Sun
       .calendar-shift ng-repeat="shift in shifts" class="calendar-shift-{{shift.id}}"
+        .calendar-shift-assigned-employee ng-repeat="user_shift in shift.user_shifts | filter:{scheduled:true}" ng-hide="requestTradeModeIsOn" {{user_shift.user.name}}
+        input.original-user-shift-id [type="hidden"
+                                                ng-repeat="user_shift in shift.user_shifts | filter:{scheduled:true}"
+                                                value="{{user_shift.id}}"
+                                                ]
+        .styled-select ng-show="requestTradeModeIsOnAndShiftIsCurrentUserShift({{shift.id}})"
+          select
+            option ng-repeat="user_shift in shift.user_shifts" value="{{user_shift.user.id}}" {{user_shift.user.name}}
 
-    input.btn.btn-blue.request-shift-trade-btn value="Request Shift Trade" type="submit" ng-click="enterRequestTradeMode()" ng-hide="requestTradeModeIsOn"
-    input.btn.btn-blue.request-shift-trade-btn value="Submit Trade Request" type="submit" ng-show="requestTradeModeIsOn"
+    input.btn.btn-blue.request-shift-trade-btn [value="Request Shift Trade"
+                                                type="submit" ng-click="enterRequestTradeMode()"
+                                                ng-hide="requestTradeModeIsOn"]
+    / input.btn.btn-blue.request-shift-trade-btn [value="Submit Trade Request"
+    /                                             type="submit" ng-show="requestTradeModeIsOn"
+    /                                             ng-click="submitShiftTradeRequest()"
+    /                                             ]
