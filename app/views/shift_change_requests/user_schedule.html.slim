@@ -68,13 +68,13 @@ javascript:
       .calendar-shift ng-repeat="shift in shifts" class="calendar-shift-{{shift.id}}"
         .me ng-show="shiftIsCurrentUserShift({{shift.id}})"
           .calendar-shift-assigned-employee ng-repeat="user_shift in shift.user_shifts | filter:{scheduled:true}" ng-hide="requestTradeModeIsOn" {{user_shift.user.name}}
+          input.btn.btn-blue.request-shift-trade-btn [value="Trade"
+                                      type="submit" ng-click="enterRequestTradeMode()"
+                                      ng-hide="requestTradeModeIsOn"]
           input.original-user-shift-id [type="hidden"
                                                   ng-repeat="user_shift in shift.user_shifts | filter:{scheduled:true}"
                                                   value="{{user_shift.id}}"
                                                   ]
-          input.btn.btn-blue.request-shift-trade-btn [value="Request Shift Trade"
-                                                type="submit" ng-click="enterRequestTradeMode()"
-                                                ng-hide="requestTradeModeIsOn"]
 
         .notMe ng-show="shiftIsNotCurrentUserShift({{shift.id}})"
           .calendar-shift-assigned-employee ng-repeat="user_shift in shift.user_shifts | filter:{scheduled:true}" ng-hide="requestTradeModeIsOn" {{user_shift.user.name}}
@@ -85,8 +85,3 @@ javascript:
           .styled-select ng-show="requestTradeModeIsOnAndShiftIsCurrentUserShift({{shift.id}})"
             select
               option ng-repeat="user_shift in shift.user_shifts" value="{{user_shift.user.id}}" {{user_shift.user.name}}
-
-
-    input.btn.btn-blue.request-shift-trade-btn [value="Request Shift Trade"
-                                                type="submit" ng-click="enterRequestTradeMode()"
-                                                ng-hide="requestTradeModeIsOn"]
