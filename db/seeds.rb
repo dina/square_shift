@@ -26,7 +26,7 @@ User.create(
 User.create(
   name: "Scott",
   phone_number: "5555555555",
-  admin: true,
+  admin: false,
   email: "scott@squareup.com",
   password: "password"
 )
@@ -34,7 +34,7 @@ User.create(
 User.create(
   name: "Yunus",
   phone_number: "5555555555",
-  admin: true,
+  admin: false,
   email: "yunus@squareup.com",
   password: "password"
 )
@@ -42,7 +42,7 @@ User.create(
 User.create(
   name: "Mike",
   phone_number: "5555555555",
-  admin: true,
+  admin: false,
   email: "mike@squareup.com",
   password: "password"
 )
