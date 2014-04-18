@@ -19,6 +19,7 @@ class Notification < ActiveRecord::Base
   ].freeze
 
   belongs_to :user
+  belongs_to :user_shift
 
   serialize :data, JSON
   validates :notification_type, presence: true

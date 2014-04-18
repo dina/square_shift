@@ -4,14 +4,20 @@ class ShiftChangeRequestsController < ApplicationController
 
   def create_cover_request
     original_user_shift = UserShift.find(params[:original_user_shift_id])
-    target_user = User.find(params[:target_user_id])
 
-    if !current_user.admin? and current_user != original_user_shift.user
+    if current_user != original_user_shift.user
       render json: {error: "You don't have the necessary permissions!"}, status: 403
     elsif !original_user_shift.scheduled?
       render json: {error: "You are not assigned to this shift!"}, status: 403
     else
-      #ShiftChangeRequest.create_cover_request(current_user, original_user_shift, target_user)
+      (User.all - [current_user]).each do |user|
+        Notification.where(
+          user: user,
+          action: true,
+          notification_type: Notification::CANT_MAKE_SHIFT_REQUEST,
+          user_shift_id: params[:original_user_shift_id]
+        ).first_or_create
+      end
       render json: :none
     end
   end
