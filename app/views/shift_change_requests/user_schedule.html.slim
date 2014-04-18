@@ -42,6 +42,14 @@ javascript:
       $scope.requestTradeModeIsOn = true;
     };
 
+    $scope.shiftIsCurrentUserShift = function(shiftId) {
+      return $scope.currentUserShiftIds.indexOf(shiftId) > -1;
+    };
+
+    $scope.shiftIsNotCurrentUserShift = function(shiftId) {
+      return $scope.currentUserShiftIds.indexOf(shiftId) <= -1;
+    };
+
     $scope.requestTradeModeIsOnAndShiftIsCurrentUserShift = function(shiftId) {
       return $scope.requestTradeModeIsOn && $scope.currentUserShiftIds.indexOf(shiftId) > -1;
     };
@@ -58,14 +66,25 @@ javascript:
       .calendar-shift-header.calendar-shift-header-6 Sat
       .calendar-shift-header.calendar-shift-header-7 Sun
       .calendar-shift ng-repeat="shift in shifts" class="calendar-shift-{{shift.id}}"
-        .calendar-shift-assigned-employee ng-repeat="user_shift in shift.user_shifts | filter:{scheduled:true}" ng-hide="requestTradeModeIsOn" {{user_shift.user.name}}
-        input.original-user-shift-id [type="hidden"
-                                                ng-repeat="user_shift in shift.user_shifts | filter:{scheduled:true}"
-                                                value="{{user_shift.id}}"
-                                                ]
-        .styled-select ng-show="requestTradeModeIsOnAndShiftIsCurrentUserShift({{shift.id}})"
-          select
-            option ng-repeat="user_shift in shift.user_shifts" value="{{user_shift.user.id}}" {{user_shift.user.name}}
+        .me ng-show="shiftIsCurrentUserShift({{shift.id}})"
+          .calendar-shift-assigned-employee ng-repeat="user_shift in shift.user_shifts | filter:{scheduled:true}" ng-hide="requestTradeModeIsOn" {{user_shift.user.name}}
+          input.original-user-shift-id [type="hidden"
+                                                  ng-repeat="user_shift in shift.user_shifts | filter:{scheduled:true}"
+                                                  value="{{user_shift.id}}"
+                                                  ]
+          .styled-select ng-show="requestTradeModeIsOnAndShiftIsCurrentUserShift({{shift.id}})"
+            select
+              option ng-repeat="user_shift in shift.user_shifts" value="{{user_shift.user.id}}" {{user_shift.user.name}}
+        .notMe ng-show="shiftIsNotCurrentUserShift({{shift.id}})"
+          .calendar-shift-assigned-employee ng-repeat="user_shift in shift.user_shifts | filter:{scheduled:true}" ng-hide="requestTradeModeIsOn" {{user_shift.user.name}}
+          input.original-user-shift-id [type="hidden"
+                                                  ng-repeat="user_shift in shift.user_shifts | filter:{scheduled:true}"
+                                                  value="{{user_shift.id}}"
+                                                  ]
+          .styled-select ng-show="requestTradeModeIsOnAndShiftIsCurrentUserShift({{shift.id}})"
+            select
+              option ng-repeat="user_shift in shift.user_shifts" value="{{user_shift.user.id}}" {{user_shift.user.name}}
+
 
     input.btn.btn-blue.request-shift-trade-btn [value="Request Shift Trade"
                                                 type="submit" ng-click="enterRequestTradeMode()"
