@@ -9,7 +9,10 @@ class ApplicationController < ActionController::Base
     s = Schedule.last
     s.published = false
     s.save
-    UserShift.all.each(&:destroy)
+    UserShift.all.map do |us|
+      us unless ['Mike', 'Scott'].include?(us.user.name)
+    end.compact.each(&:destroy)
+    UserShift.all.each{|us| us.scheduled = false; us.save;}
     Notification.where(
       "notification_type in ('shift_taken', 'cant_make_shift_request')"
     ).each(&:destroy)
