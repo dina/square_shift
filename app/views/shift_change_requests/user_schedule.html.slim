@@ -8,13 +8,13 @@ javascript:
   var targetUser = 0;
 
   $(document).ready(function(){
-    $('select').change(function(){
+    $('.request-shift-trade-btn').click(function(){
       $('.modal-backdrop, .request-shift-trade-modal').fadeIn();
-      originalUserShiftId = $(this).parent('.styled-select').siblings('.original-user-shift-id').val();
+      originalUserShiftId = $(this).siblings('.original-user-shift-id').val();
       targetUser = $(this).val();
     });
 
-    $('.submit-trade-request-btn').click(function(){
+    $('.request-shift-trade-btn').click(function(){
       $.ajax({
         url: "/shift_change_requests/create_cover_request",
         type: "POST",
@@ -72,9 +72,10 @@ javascript:
                                                   ng-repeat="user_shift in shift.user_shifts | filter:{scheduled:true}"
                                                   value="{{user_shift.id}}"
                                                   ]
-          .styled-select ng-show="requestTradeModeIsOnAndShiftIsCurrentUserShift({{shift.id}})"
-            select
-              option ng-repeat="user_shift in shift.user_shifts" value="{{user_shift.user.id}}" {{user_shift.user.name}}
+          input.btn.btn-blue.request-shift-trade-btn [value="Request Shift Trade"
+                                                type="submit" ng-click="enterRequestTradeMode()"
+                                                ng-hide="requestTradeModeIsOn"]
+
         .notMe ng-show="shiftIsNotCurrentUserShift({{shift.id}})"
           .calendar-shift-assigned-employee ng-repeat="user_shift in shift.user_shifts | filter:{scheduled:true}" ng-hide="requestTradeModeIsOn" {{user_shift.user.name}}
           input.original-user-shift-id [type="hidden"
