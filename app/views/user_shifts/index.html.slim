@@ -1,25 +1,21 @@
 javascript:
   var activeShiftsArray = $.parseJSON( "#{@current_shift_ids}" );
 
-h1 Availability
-h4.sub-header Please fill in your shift availability
-.l-content.margin-top-medium
+
+.l-content.margin-top-medium.user-shifts-page class=('disabled' if Schedule.published?)
+  .l-row.intro
+    h1 Availability
+    h4.sub-header Please fill in your shift availability
+
   .l-row
     .calendar.availability-calendar
-      .calendar-shift-header.calendar-shift-header-1
-        | Mon
-      .calendar-shift-header.calendar-shift-header-2
-        | Tue
-      .calendar-shift-header.calendar-shift-header-3
-        | Wed
-      .calendar-shift-header.calendar-shift-header-4
-        | Thu
-      .calendar-shift-header.calendar-shift-header-5
-        | Fri
-      .calendar-shift-header.calendar-shift-header-6
-        | Sat
-      .calendar-shift-header.calendar-shift-header-7
-        | Sun
+      .calendar-shift-header.calendar-shift-header-1 Mon
+      .calendar-shift-header.calendar-shift-header-2 Tue
+      .calendar-shift-header.calendar-shift-header-3 Wed
+      .calendar-shift-header.calendar-shift-header-4 Thu
+      .calendar-shift-header.calendar-shift-header-5 Fri
+      .calendar-shift-header.calendar-shift-header-6 Sat
+      .calendar-shift-header.calendar-shift-header-7 Sun
 
       - @all_shifts[0..2].each_with_index do |shift, index|
         .calendar-shift-time class="calendar-shift-time-#{index+1}"
@@ -28,13 +24,11 @@ h4.sub-header Please fill in your shift availability
       - for shift in @all_shifts
         .calendar-shift data-id="#{shift.id}" class=('active' if @current_shift_ids.include?(shift.id)) class="calendar-shift-#{shift.id}"
 
-      - if Schedule.published?
-        .calendar-disabled-overlay
-          .notice
-            | Your schedule has been published. #{link_to "Click to view your schedule!", my_schedule_path}
-
     h4.sub-header Your availability will be submitted to your manager for approval
 
     - unless Schedule.published?
       input.btn.btn-blue.update-shifts-btn value="Submit" type="submit"
 
+- if Schedule.published?
+  .schedule-published-notice
+    | Your schedule has been published. #{link_to "Click to view your schedule!", my_schedule_path}
