@@ -7,6 +7,8 @@
       li.menu-list-item Orders
       li.menu-list-item.active Employees
       li.menu-list-item Business
+      - if signed_in?
+        = link_to "Sign out", destroy_user_session_path, method: :delete, style: "color:#29333a; text-decoration: none;"
     - if current_user
       .header-username =current_user.email
 
