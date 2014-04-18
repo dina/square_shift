@@ -50,6 +50,8 @@ javascript:
           .calendar-shift class="calendar-shift-#{n}" class=('is-scheduled' if !@shifts_data[n][:scheduled].nil?)
             .styled-select
               select.user-shift
+                -if @shifts_data[n][:scheduled].nil?
+                  option value=0 selected='selected'
                 -@shifts_data[n][:all].each do |user_shift|
                   option value="#{user_shift.id}" selected=('selected' if user_shift.scheduled?) = user_shift.user.name
         .calendar-disabled-overlay style=('display: none;' unless Schedule.published?)

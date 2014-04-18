@@ -20,7 +20,7 @@ class UserShift < ActiveRecord::Base
     # For instance, this code can be fooled into setting the 'scheduled' flags for two user_shifts that correspond to the same shift.
 
     # set the 'scheduled' flags of new assignments
-    UserShift.find(new_assignment_ids).each(&:schedule!)
+    UserShift.where(id: new_assignment_ids).each(&:schedule!)
   end
 
   def self.generate_schedule!
