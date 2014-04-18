@@ -1,7 +1,6 @@
 javascript:
   var activeShiftsArray = $.parseJSON( "#{@current_shift_ids}" );
 
-
 .l-content.margin-top-medium.user-shifts-page class=('disabled' if Schedule.published?)
   .l-row.intro
     h1 Availability
@@ -28,6 +27,9 @@ javascript:
 
     - unless Schedule.published?
       input.btn.btn-blue.update-shifts-btn value="Submit" type="submit"
+
+  - if Schedule.published?
+    .l-disable-functionality-overlay
 
 - if Schedule.published?
   .schedule-published-notice
