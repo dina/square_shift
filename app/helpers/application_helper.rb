@@ -12,4 +12,8 @@ module ApplicationHelper
     datetime.strftime('%A %I:%M%p')
   end
 
+  def shift_range_short(shift)
+    shift.start_at.strftime('%I:%M%p - ') + shift.end_at.strftime('%I:%M%p')
+  end
+
 end

@@ -42,7 +42,7 @@ javascript:
 
         - Shift.limit(3).each_with_index do |shift, index|
           .calendar-shift-time class="calendar-shift-time-#{index+1}"
-            = shift.start_at.to_s(:time)
+            = "#{shift_range_short shift}"
 
         -(1..21).each do |n|
           .calendar-shift class="calendar-shift-#{n}" class=('is-scheduled' if !@shifts_data[n][:scheduled].nil?)
