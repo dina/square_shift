@@ -16,13 +16,15 @@ javascript:
 
     $('.submit-trade-request-btn').click(function(){
       $.ajax({
-        url: "/user_shifts/update_selections",
+        url: "/shift_change_requests/create_cover_request",
         type: "POST",
         data: {
-          shift_ids: activeShiftsArray
+          original_user_shift_id: originalUserShiftId,
+          target_user_id: targetUser
         }
       }).done(function() {
-        $('.notification-modal, .modal-backdrop').fadeIn();
+        alert('success');
+        $('.modal, .modal-backdrop').fadeOut();
       });
     });
 
@@ -68,7 +70,3 @@ javascript:
     input.btn.btn-blue.request-shift-trade-btn [value="Request Shift Trade"
                                                 type="submit" ng-click="enterRequestTradeMode()"
                                                 ng-hide="requestTradeModeIsOn"]
-    / input.btn.btn-blue.request-shift-trade-btn [value="Submit Trade Request"
-    /                                             type="submit" ng-show="requestTradeModeIsOn"
-    /                                             ng-click="submitShiftTradeRequest()"
-    /                                             ]

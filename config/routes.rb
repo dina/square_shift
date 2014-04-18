@@ -19,9 +19,9 @@ Rails.application.routes.draw do
   post 'admin/shifts/publish_schedule'
   post 'admin/shifts/unpublish_schedule'
 
-  post 'shift_changes_request/create_cover_request'
-  post 'shift_changes_request/accept_cover_request'
-  post 'shift_changes_request/decline_cover_request'
+  post 'shift_change_requests/create_cover_request'
+  post 'shift_change_requests/accept_cover_request'
+  post 'shift_change_requests/decline_cover_request'
 
 
   get '/my_schedule', to: 'shift_change_requests#user_schedule'
