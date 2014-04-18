@@ -7,8 +7,6 @@
       li.menu-list-item Orders
       li.menu-list-item.active Employees
       li.menu-list-item Business
-      - if signed_in?
-        = link_to "Sign out", destroy_user_session_path, method: :delete, style: "color:#29333a; text-decoration: none;"
     - if current_user
       .header-username =current_user.email
 
@@ -17,7 +15,8 @@
     ul.menu-list
       li =link_to_unless_current "Dashboard", notifications_path, class: "menu-list-item"
       li =link_to_unless_current "Availability", user_shifts_path, class: "menu-list-item"
-      li =link_to_unless_current "Manage Schedules", admin_shifts_path, class: "menu-list-item"
+      - if current_user && current_user.admin?
+        li =link_to_unless_current "Manage Schedule", admin_shifts_path, class: "menu-list-item"
       li =link_to_unless_current "My Schedule", my_schedule_path, class: "menu-list-item"
-
-/ <%= link_to 'sign out', destroy_user_session_path, method: :delete %>
+      - if signed_in?
+        li.sign-out= link_to "Sign out", destroy_user_session_path, method: :delete, style: "color:#85898c; margin-left:40px; text-decoration: none;"

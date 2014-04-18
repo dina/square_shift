@@ -1,13 +1,13 @@
 <% user_shift = UserShift.find(notification.user_shift_id) %>
 <% shift_time = display_shift_time(user_shift.shift) %>
 <div class='lhs'>
-  <img src='assets/coverme-icon-orange.png'>
+  <img src='assets/swap-icon-orange.png'>
 </div>
 <div class='rhs'>
   <p class='date'>
     <%= display_datetime notification.created_at %>
   </p>
-  <%= user_shift.user.name %> can't make his/her shift at <span><%= shift_time %></span>.
+  <%= user_shift.user.name %> can't make his/her shift on <span><%= shift_time %></span>.
   <br /><br />
   Accept for a merit?
 

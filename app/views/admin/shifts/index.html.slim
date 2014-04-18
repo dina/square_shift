@@ -54,7 +54,7 @@ javascript:
                   option value="#{user_shift.id}" selected=('selected' if user_shift.scheduled?) = user_shift.user.name
         .calendar-disabled-overlay style=('display: none;' unless Schedule.published?)
           .notice
-            | The schedule has been published.
+            | The schedule has been published. #{link_to "Click to view your schedule!", my_schedule_path}
       - unless Schedule.published?
         .calendar-buttons
           = button_to 'Generate Schedule', admin_shifts_generate_schedule_path, method: :post, class: "btn btn-white"
