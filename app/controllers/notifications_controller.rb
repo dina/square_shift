@@ -5,7 +5,7 @@ class NotificationsController < ApplicationController
   before_action :load_notifications, except: [:index]
 
   def index
-    @notifications = Notification.where(user: current_user).reverse
+    @notifications = Notification.where(user: current_user)
   end
 
   # Adds the shift to your schedule.

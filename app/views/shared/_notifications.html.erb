@@ -26,7 +26,7 @@
     <h2>Notifications</h2>
     <ul>
       <hr />
-      <% notifications.actionable.each do |notification| %>
+      <% notifications.actionable.reverse.each do |notification| %>
         <li>
           <%= render partial: "shared/notifications/#{notification.notification_type}", locals: { notification: notification } %>
         </li>
@@ -39,7 +39,7 @@
     <h2>Activity</h2>
     <ul>
       <hr />
-      <% notifications.informational.each do |notification| %>
+      <% notifications.informational.reverse.each do |notification| %>
         <li>
           <div class='lhs'>●</div><%= render partial: "shared/notifications/#{notification.notification_type}", locals: { notification: notification } %>
         </li>
