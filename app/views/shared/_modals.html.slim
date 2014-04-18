@@ -4,7 +4,7 @@
   .modal-close-button
   =image_tag "check-icon.png", class: "thank-you-image"
   h2 Thank You
-  p Your manager will review and confirm the final schedule
+  p Your manager will review and confirm the final schedule.
 
 .modal.publish-schedule-modal.notification-modal
   .modal-close-button
@@ -14,7 +14,14 @@
 
 .modal.request-shift-trade-modal.notification-modal
   .modal-close-button
-  =image_tag "check-icon.png", class: "thank-you-image"
+  =image_tag "swap-icon-orange.png", class: "thank-you-image"
   h2 Request that someone take over this shift?
-  button.submit-trade-request-btn Yes
-  button.cancel-trade-request-btn No
+  br
+  button.submit-trade-request-btn.btn.btn-blue Yes
+  button.cancel-trade-request-btn.btn.btn-blue No
+
+.modal.confirm-shift-trade-modal.notification-modal
+  .modal-close-button
+  =image_tag "check-icon.png", class: "thank-you-image"
+  h2 Request has been made!
+  p Your co-workers will be notified that you'd like to swap shifts.
