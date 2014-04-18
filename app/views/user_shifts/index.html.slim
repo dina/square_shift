@@ -1,6 +1,8 @@
 javascript:
   var activeShiftsArray = $.parseJSON( "#{@current_shift_ids}" );
 
+h1 Availability
+h4.sub-header Please fill in your shift availability
 .l-content.margin-top-medium
   .l-row
     .calendar.availability-calendar
@@ -31,6 +33,8 @@ javascript:
           .notice
             | Your schedule has been published. #{link_to "Click to view your schedule!", root_path}
 
+    h4.sub-header Your availability will be submitted to your manager for approval
+
     - unless Schedule.published?
-      input.btn.btn-blue.update-shifts-btn value="Update Availability" type="submit"
+      input.btn.btn-blue.update-shifts-btn value="Submit" type="submit"
 
