@@ -11,7 +11,7 @@ class ShiftChangeRequestsController < ApplicationController
     elsif !original_user_shift.scheduled?
       render json: {error: "You are not assigned to this shift!"}, status: 403
     else
-      ShiftChangeRequest.create_cover_request(current_user, original_user_shift, target_user)
+      #ShiftChangeRequest.create_cover_request(current_user, original_user_shift, target_user)
       render json: :none
     end
   end
@@ -35,7 +35,7 @@ class ShiftChangeRequestsController < ApplicationController
   private
 
   def ensure_published!
-    render json: {error: "Not allowed before publishing!"}, status: 403 if Schedule.published?
+    render json: {error: "Not allowed before publishing!"}, status: 403 unless Schedule.published?
   end
 
   def set_shift_change_request
