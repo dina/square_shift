@@ -46,7 +46,7 @@ body {
   overflow: hidden;
   margin-top: 28px; }
   .styled-select:hover {
-    background: url(/assets/chevron-8a024826a3e7711bf19ceb424cae2b58.png) no-repeat #dddddd;
+    background: url(/assets/chevron.png) no-repeat #dddddd;
     background-size: 15%;
     background-repeat: no-repeat;
     background-position: 72px 14px; }
@@ -73,6 +73,16 @@ body {
   width: 600px;
   vertical-align: top; }
 
+.admin-shifts-page.disabled {
+  opacity: 0.25; }
+
+.l-disable-functionality-overlay {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px; }
+
 .header {
   position: fixed;
   top: 0px;
@@ -97,7 +107,7 @@ body {
   left: 0px;
   height: 32px;
   width: 32px;
-  background-image: url(/assets/icon-e8986e60c24f0352d22c403fab68e59c.png);
+  background-image: url(/assets/icon.png);
   background-size: 100%;
   background-position: 0 0;
   background-repeat: no-repeat;
@@ -192,6 +202,7 @@ body {
   min-height: 300px;
   margin-top: -150px;
   margin-left: -320px;
+  padding: 25px;
   background-color: white; }
 
 .modal-close-button {
@@ -201,7 +212,7 @@ body {
   height: 26px;
   width: 26px;
   cursor: pointer;
-  background-image: url(/assets/close-button-a0318004850de9c917f99bc888375bd0.png);
+  background-image: url(/assets/close-button.png);
   background-size: 100%; }
 
 .thank-you-image {
@@ -434,7 +445,7 @@ h4.sub-header {
   border: 1px solid white; }
 
 .calendar-shift.active {
-  background: url(/assets/checkicon-white-24f4b09b510fee0ae8f7e74c5ae32c05.png) no-repeat center;
+  background: url(/assets/checkicon-white.png) no-repeat center;
   background-color: #46b303;
   background-size: 50px; }
 
