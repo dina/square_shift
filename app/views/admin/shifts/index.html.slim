@@ -1,7 +1,7 @@
 javascript:
   var schedule_published = #{Schedule.published?}
 
-.l-content.margin-top-medium
+.l-content.margin-top-medium.admin-shifts-page class=('disabled' if Schedule.published?)
   .l-row
     .l-grid-1-2
       .admin-container
@@ -27,20 +27,13 @@ javascript:
           br
           | 3. Publish the schedule to your team!
       .calendar
-        .calendar-shift-header.calendar-shift-header-1
-          | Mon
-        .calendar-shift-header.calendar-shift-header-2
-          | Tue
-        .calendar-shift-header.calendar-shift-header-3
-          | Wed
-        .calendar-shift-header.calendar-shift-header-4
-          | Thu
-        .calendar-shift-header.calendar-shift-header-5
-          | Fri
-        .calendar-shift-header.calendar-shift-header-6
-          | Sat
-        .calendar-shift-header.calendar-shift-header-7
-          | Sun
+        .calendar-shift-header.calendar-shift-header-1 Mon
+        .calendar-shift-header.calendar-shift-header-2 Tue
+        .calendar-shift-header.calendar-shift-header-3 Wed
+        .calendar-shift-header.calendar-shift-header-4 Thu
+        .calendar-shift-header.calendar-shift-header-5 Fri
+        .calendar-shift-header.calendar-shift-header-6 Sat
+        .calendar-shift-header.calendar-shift-header-7 Sun
 
         - Shift.limit(3).each_with_index do |shift, index|
           .calendar-shift-time class="calendar-shift-time-#{index+1}"
@@ -54,10 +47,11 @@ javascript:
                   option value=0 selected='selected'
                 -@shifts_data[n][:all].each do |user_shift|
                   option value="#{user_shift.id}" selected=('selected' if user_shift.scheduled?) = user_shift.user.name
-        .calendar-disabled-overlay style=('display: none;' unless Schedule.published?)
-          .notice
-            | The schedule has been published. #{link_to "Click to view your schedule!", my_schedule_path}
+
       - unless Schedule.published?
         .calendar-buttons
           = button_to 'Generate Schedule', admin_shifts_generate_schedule_path, method: :post, class: "btn btn-white"
           input.btn.btn-blue.publish-schedule-btn value="Publish Schedule" type="submit"
+
+-if Schedule.published?
+  .schedule-published-notice The schedule has been published.  #{link_to "Click to view your schedule!", my_schedule_path}
