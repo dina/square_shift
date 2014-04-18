@@ -39,6 +39,14 @@ User.create(
   password: "password"
 )
 
+User.create(
+  name: "Mike",
+  phone_number: "5555555555",
+  admin: true,
+  email: "mike@squareup.com",
+  password: "password"
+)
+
 today = DateTime.now.utc.beginning_of_day
 sunday = today
 while sunday.cwday != 7
